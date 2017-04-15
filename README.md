@@ -12,3 +12,9 @@ app to perform such simple opperations.
 
 To do:
 - perhaps try multi-threading if memory sufficient to use 2 word apps in same time ! Crazy?
+
+# Installation
+
+Download zip archive, unzip and run setup.exe. Clickonce deployment used, so no administrator privileges
+required. The application will self-update upon launch. It looks for new version from local network,
+in a folder on Q drive (GSC ressouce)
