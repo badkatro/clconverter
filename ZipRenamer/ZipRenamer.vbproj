@@ -14,7 +14,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Deploy\ZipRenamer\</PublishUrl>
+    <PublishUrl>C:\Deploy\WordCLConverter\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -24,13 +24,12 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\dm3\trro\10-TOOLS\0_Winform_Apps\ZipRenamer\</InstallUrl>
+    <InstallUrl>\\dm3\trro\10-TOOLS\0_Winform_Apps\CLConverter\</InstallUrl>
     <UpdateUrl>\\dm3\trro\10-TOOLS\0_Winform_Apps\ZipRenamer\</UpdateUrl>
     <ProductName>Zip Renamer</ProductName>
     <PublisherName>Claudiu Margarint</PublisherName>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>45</ApplicationRevision>
+    <ApplicationRevision>51</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

@@ -330,16 +330,16 @@ Public Class Form1
 
         Dim archivesProcessResult As String
 
-        'archivesProcessResult = Convert_RtfsToDocs_InAllFolders(inputArchivesDirs)
+        archivesProcessResult = Convert_RtfsToDocs_InAllFolders(inputArchivesDirs)
         'archivesProcessResult = Convert_RtfsToDocs_wRTFBox_InAllFolders(inputArchivesDirs)
 
 
         '' HIGHLY EXPERIMENTAL, try file conversion with Open XML SDK 2.5 !
-        archivesProcessResult = Convert_RtfsToDocs_InAllFolders_OXML(inputArchivesDirs)
+        'archivesProcessResult = Convert_RtfsToDocs_InAllFolders_OXML(inputArchivesDirs)
 
-        'If Not archivesProcessResult = "-1" Then     ' Success
-        '    MsgBox("Processing archive(s) " & archivesProcessResult & " failed!", vbOKOnly + MsgBoxStyle.Information)
-        'End If
+        If Not archivesProcessResult = "-1" Then     ' Success
+            MsgBox("Processing archive(s) " & archivesProcessResult & " failed!", vbOKOnly + MsgBoxStyle.Information)
+        End If
 
 
         hostFolder = Path.Combine(My.Settings.Default_App_WorkingFolder, baseOutputFolder)
@@ -667,7 +667,7 @@ Public Class Form1
             If Not IsNothing(Me.wordApp) Then Me.wordApp.Quit()
             Me.wordApp = Nothing
         Catch
-            MsgBox("Error " & Err.Number & " occured in " & Err.Source & " with description " & Err.Description)
+            MsgBox("Bdk: Error " & Err.Number & " occured in " & Err.Source & " with description " & Err.Description)
             Err.Clear()
         End Try
 

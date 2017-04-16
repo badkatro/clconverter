@@ -215,9 +215,6 @@ Partial Class Form1
         Me.ProgressBar1.Minimum = 0
         Me.ProgressBar1.Maximum = 100
 
-        Me.Message_Lbl.Text = "Ready"
-
-
     End Sub
     Friend WithEvents ToggleOptions_Lbl As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
