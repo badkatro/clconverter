@@ -15,6 +15,8 @@ End Structure
 
 Public Class Form1
 
+    Private Const ConvertRtfsMessage As String = "Converting rtfs to docx..."
+
     Private Property wdHandle As Integer
 
     Private Property Options_Opened As Boolean = False
@@ -226,7 +228,7 @@ Public Class Form1
         'Me.Message_Lbl.Text = "Launching hidden Word app..."
         'Dim wordApp As New Word.Application
 
-        Me.Message_Lbl.Text = "Converting all rtfs in docx format..."
+        Me.Message_Lbl.Text = ConvertRtfsMessage
 
         Dim archOutFolder As String
 
