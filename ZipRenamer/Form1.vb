@@ -681,6 +681,8 @@ Public Class Form1
     End Function
 
 
+
+
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
 
         Try
@@ -891,7 +893,35 @@ Public Class Form1
                 Me.FilesList_Lview.View = System.Windows.Forms.View.List
         End Select
 
-            
+        Call Update_Filelist_Icons()
 
     End Sub
+
+    Private Sub Update_Filelist_Icons()
+
+        Dim iconIndex As Integer
+
+        Select Case Me.FilesList_Lview.View
+            Case System.Windows.Forms.View.List
+                iconIndex = 0
+            Case System.Windows.Forms.View.SmallIcon
+                iconIndex = 1
+            Case System.Windows.Forms.View.LargeIcon
+                iconIndex = 2
+        End Select
+
+        Dim litem As ListViewItem
+
+        For Each litem In Me.FilesList_Lview.Items
+
+            litem.ImageIndex = iconIndex
+
+        Next
+
+        Me.Refresh()
+
+    End Sub
+
+
+
 End Class

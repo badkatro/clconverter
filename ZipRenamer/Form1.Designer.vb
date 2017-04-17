@@ -49,6 +49,7 @@ Partial Class Form1
         Me.FilesList_Lview.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.FilesList_Lview.Location = New System.Drawing.Point(73, 12)
+        Me.FilesList_Lview.Margin = New System.Windows.Forms.Padding(5)
         Me.FilesList_Lview.Name = "FilesList_Lview"
         Me.FilesList_Lview.Size = New System.Drawing.Size(378, 149)
         Me.FilesList_Lview.TabIndex = 1
@@ -242,6 +243,7 @@ Partial Class Form1
 
         If zipIcons.Images.Count = 0 Then
             zipIcons.Images.Add(My.Resources.zip_16)
+            zipIcons.Images.Add(My.Resources.zip_24)
             zipIcons.Images.Add(My.Resources.zip_32)
         End If
 
