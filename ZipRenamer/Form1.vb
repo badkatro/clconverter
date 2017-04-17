@@ -833,7 +833,8 @@ Public Class Form1
 
         If My.Settings.FormDefaultWidth = 0 Then
 
-            If Me.Width < 520 Then
+
+            If Me.Width = 510 Then
 
                 Call Set_Anchors_forFormResize(True)
 
@@ -877,6 +878,7 @@ Public Class Form1
             Me.FilesList_Lview.Anchor = AnchorStyles.Left + AnchorStyles.Top + AnchorStyles.Bottom
             '
             Me.ClearList_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Top
+            Me.Pin_UserformSize_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Top
 
             Me.ToggleOptions_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Bottom
             '
@@ -893,6 +895,7 @@ Public Class Form1
             Me.FilesList_Lview.Anchor = AnchorStyles.Left + AnchorStyles.Top + AnchorStyles.Bottom + AnchorStyles.Right
             '
             Me.ClearList_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Top
+            Me.Pin_UserformSize_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Top
 
             Me.ToggleOptions_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Bottom
             '
