@@ -850,15 +850,19 @@ Public Class Form1
 
             End If
 
-        Else
+        Else    ' User HAS se custom default sizes
 
             If Me.GroupBox1.Left > Me.Width Then    ' when collapsed, userform will be smaller than left side position of options groupbox
+
+                Call Set_Anchors_forFormResize(True)
 
                 Me.Width = Me.Width + 320
 
             Else    ' we're not collapsed
 
                 Me.Width = Me.Width - 320
+
+                Call Set_Anchors_forFormResize(False)
 
             End If
 
@@ -1115,28 +1119,28 @@ Public Class Form1
     Private Sub SetForm_Dimensions(UserformWidth As Integer, UserformHeight As Integer)
         'Throw New NotImplementedException
 
+        ' unlock for resize
+        Call Set_Anchors_forFormResize(False)
+
         ' should user not have messed with settings, behave default
         If UserformWidth = 0 And UserformHeight = 0 Then
-
-            ' unlock for resize
-            Call Set_Anchors_forFormResize(True)
 
             Me.Width = 510
             Me.Height = 234
 
             'and relock
-            Call Set_Anchors_forFormResize(False)
+            'Call Set_Anchors_forFormResize(False)
 
         Else    ' User HAS set new default width and height as preffered
 
             ' unlock for resize
-            Call Set_Anchors_forFormResize(True)
+            'Call Set_Anchors_forFormResize(False)
 
             Me.Width = UserformWidth
             Me.Height = UserformHeight
 
             ' and relock
-            Call Set_Anchors_forFormResize(False)
+            'Call Set_Anchors_forFormResize(False)
 
         End If
 
