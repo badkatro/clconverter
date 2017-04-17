@@ -852,10 +852,7 @@ Public Class Form1
             End If
         End If
 
-        ' and restore user saved settings for our check-boxes
-        Me.OpenOutputFolder_Cbox.Checked = My.Settings.App_Open_OutputFolder
-        Me.AutoClean_Folders_Cbox.Checked = My.Settings.App_AutoClean_Folders
-        Me.Default_BrowseToFolder_Cbox.Checked = My.Settings.Default_BrowseTo_Folder
+        Call RestoreFormOptions()
 
         '' Launch Word app upon launch, so as to make "Process" button faster
         'Me.Message_Lbl.Text = "Starting Word Application..."
@@ -872,6 +869,20 @@ Public Class Form1
         Me.Message_Lbl.Text = "Ready"
 
     End Sub
+
+    Private Sub RestoreFormOptions()
+
+        ' and restore user saved settings for our check-boxes
+        Me.CtWorkingFolder_TxtBox.Text = My.Settings.Default_App_WorkingFolder
+
+        Me.OpenOutputFolder_Cbox.Checked = My.Settings.App_Open_OutputFolder
+        Me.AutoClean_Folders_Cbox.Checked = My.Settings.App_AutoClean_Folders
+        Me.Default_BrowseToFolder_Cbox.Checked = IIf(My.Settings.Default_BrowseTo_Folder <> "C:\", True, False)
+
+        If Me.Default_BrowseToFolder_Cbox.Checked Then Me.Default_BrowseTo_TxtBox.Text = My.Settings.Default_BrowseTo_Folder
+
+    End Sub
+
 
     Private Sub OpenOutputFolder_Cbox_Click(sender As Object, e As EventArgs) Handles OpenOutputFolder_Cbox.Click
         If Me.OpenOutputFolder_Cbox.Checked Then
@@ -992,18 +1003,24 @@ Public Class Form1
         Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.RoyalBlue
     End Sub
 
-    Private Sub StartupFolder_Lbl_Click(sender As Object, e As EventArgs) Handles StartupFolder_Lbl.Click
+   
+    Private Sub Default_BrowseToFolder_Cbox_Click(sender As Object, e As EventArgs) Handles Default_BrowseToFolder_Cbox.Click
 
         If Me.Default_BrowseToFolder_Cbox.Checked Then
 
             If Me.WorkingFolderBrowserDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                Me.StartupFolder_Lbl.Text = Me.WorkingFolderBrowserDialog.SelectedPath
+                Me.Default_BrowseTo_TxtBox.Enabled = True
+                Me.Default_BrowseTo_TxtBox.Text = Me.WorkingFolderBrowserDialog.SelectedPath
                 My.Settings.Default_BrowseTo_Folder = Me.WorkingFolderBrowserDialog.SelectedPath
             Else    ' revert to default
-                Me.StartupFolder_Lbl.Text = "None"
+                Me.Default_BrowseTo_TxtBox.Text = ""
                 My.Settings.Default_BrowseTo_Folder = "C:\"
+                Me.Default_BrowseTo_TxtBox.Enabled = False
             End If
-
+        Else
+            Me.Default_BrowseTo_TxtBox.Text = ""
+            My.Settings.Default_BrowseTo_Folder = "C:\"
+            Me.Default_BrowseTo_TxtBox.Enabled = False
         End If
 
     End Sub

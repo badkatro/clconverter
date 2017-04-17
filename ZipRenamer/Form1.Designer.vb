@@ -29,7 +29,7 @@ Partial Class Form1
         Me.Message_Lbl = New System.Windows.Forms.Label()
         Me.ToggleOptions_Lbl = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.StartupFolder_Lbl = New System.Windows.Forms.Label()
+        Me.Default_BrowseTo_TxtBox = New System.Windows.Forms.TextBox()
         Me.Default_BrowseToFolder_Cbox = New System.Windows.Forms.CheckBox()
         Me.AutoClean_Folders_Cbox = New System.Windows.Forms.CheckBox()
         Me.OpenOutputFolder_Cbox = New System.Windows.Forms.CheckBox()
@@ -105,7 +105,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.StartupFolder_Lbl)
+        Me.GroupBox1.Controls.Add(Me.Default_BrowseTo_TxtBox)
         Me.GroupBox1.Controls.Add(Me.Default_BrowseToFolder_Cbox)
         Me.GroupBox1.Controls.Add(Me.AutoClean_Folders_Cbox)
         Me.GroupBox1.Controls.Add(Me.OpenOutputFolder_Cbox)
@@ -119,18 +119,13 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Options"
         '
-        'StartupFolder_Lbl
+        'Default_BrowseTo_TxtBox
         '
-        Me.StartupFolder_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.StartupFolder_Lbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.StartupFolder_Lbl.Font = New System.Drawing.Font("GeoSlab703 MdCn BT", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.StartupFolder_Lbl.ForeColor = System.Drawing.Color.MediumBlue
-        Me.StartupFolder_Lbl.Location = New System.Drawing.Point(153, 120)
-        Me.StartupFolder_Lbl.Name = "StartupFolder_Lbl"
-        Me.StartupFolder_Lbl.Size = New System.Drawing.Size(143, 18)
-        Me.StartupFolder_Lbl.TabIndex = 6
-        Me.StartupFolder_Lbl.Text = "None"
-        Me.StartupFolder_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Default_BrowseTo_TxtBox.Enabled = False
+        Me.Default_BrowseTo_TxtBox.Location = New System.Drawing.Point(9, 140)
+        Me.Default_BrowseTo_TxtBox.Name = "Default_BrowseTo_TxtBox"
+        Me.Default_BrowseTo_TxtBox.Size = New System.Drawing.Size(251, 20)
+        Me.Default_BrowseTo_TxtBox.TabIndex = 6
         '
         'Default_BrowseToFolder_Cbox
         '
@@ -168,9 +163,9 @@ Partial Class Form1
         Me.ChooseWorkingFolder_Lbl.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ChooseWorkingFolder_Lbl.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ChooseWorkingFolder_Lbl.ForeColor = System.Drawing.Color.Black
-        Me.ChooseWorkingFolder_Lbl.Location = New System.Drawing.Point(266, 38)
+        Me.ChooseWorkingFolder_Lbl.Location = New System.Drawing.Point(272, 38)
         Me.ChooseWorkingFolder_Lbl.Name = "ChooseWorkingFolder_Lbl"
-        Me.ChooseWorkingFolder_Lbl.Size = New System.Drawing.Size(30, 21)
+        Me.ChooseWorkingFolder_Lbl.Size = New System.Drawing.Size(23, 21)
         Me.ChooseWorkingFolder_Lbl.TabIndex = 2
         Me.ChooseWorkingFolder_Lbl.Text = "..."
         Me.ChooseWorkingFolder_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -181,7 +176,7 @@ Partial Class Form1
         Me.CtWorkingFolder_TxtBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CtWorkingFolder_TxtBox.Location = New System.Drawing.Point(6, 38)
         Me.CtWorkingFolder_TxtBox.Name = "CtWorkingFolder_TxtBox"
-        Me.CtWorkingFolder_TxtBox.Size = New System.Drawing.Size(255, 21)
+        Me.CtWorkingFolder_TxtBox.Size = New System.Drawing.Size(260, 21)
         Me.CtWorkingFolder_TxtBox.TabIndex = 1
         '
         'WorkingFolder_Lbl
@@ -286,8 +281,8 @@ Partial Class Form1
     Friend WithEvents AutoClean_Folders_Cbox As System.Windows.Forms.CheckBox
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents FileList_ViewMode_Lbl As System.Windows.Forms.Label
-    Friend WithEvents StartupFolder_Lbl As System.Windows.Forms.Label
     Friend WithEvents Default_BrowseToFolder_Cbox As System.Windows.Forms.CheckBox
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Default_BrowseTo_TxtBox As System.Windows.Forms.TextBox
 
 End Class
