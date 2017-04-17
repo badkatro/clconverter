@@ -341,19 +341,16 @@ Public Class Form1
 
     End Function
 
-    Private Sub CheckLaunchNoFiles()
+    Private Function CheckLaunchNoFiles() As Boolean
 
-        ' Launching wihout selected archives is a no-no...
         If Me.FilesList_Lview.Items.Count = 0 Then
-            Me.Message_Lbl.Text = "No archives selected, Exiting..."
-            Me.Refresh()
-            Threading.Thread.Sleep(600)
-            Me.Message_Lbl.Text = "Ready"
-            Me.Refresh()
-            Exit Sub
+            Call ShowTemporaryMessage("No archives selected, Exiting...")
+            Return True
+        Else
+            Return False
         End If
 
-    End Sub
+    End Function
 
     Private Sub Process_Btn_Click(sender As Object, e As EventArgs) Handles Process_Btn.Click
 
@@ -362,7 +359,7 @@ Public Class Form1
         Dim elapsed_time As TimeSpan
 
         ' Launching wihout selected archives is a no-no...
-        Call CheckLaunchNoFiles()
+        If CheckLaunchNoFiles() Then Exit Sub
 
         ' DEBUG
         start_time = Now
@@ -1143,6 +1140,36 @@ Public Class Form1
             'Call Set_Anchors_forFormResize(False)
 
         End If
+
+    End Sub
+
+    Private Sub Pin_UserformSize_Lbl_Click(sender As Object, e As EventArgs) Handles Pin_UserformSize_Lbl.Click
+
+        If Me.Width <> 510 And Me.Height <> 234 Then
+            My.Settings.FormDefaultWidth = Me.Width
+            My.Settings.FormDefaultHeight = Me.Height
+
+            Call ShowTemporaryMessage("New form default size set ")
+        End If
+
+    End Sub
+
+    Private Sub Pin_UserformSize_Lbl_MouseDown(sender As Object, e As MouseEventArgs) Handles Pin_UserformSize_Lbl.MouseDown
+        Me.Pin_UserformSize_Lbl.ForeColor = System.Drawing.Color.DarkViolet
+    End Sub
+
+    Private Sub Pin_UserformSize_Lbl_MouseUp(sender As Object, e As MouseEventArgs) Handles Pin_UserformSize_Lbl.MouseUp
+        Me.Pin_UserformSize_Lbl.ForeColor = System.Drawing.Color.Maroon
+    End Sub
+
+    Private Sub ShowTemporaryMessage(Message As String)
+        'Throw New NotImplementedException
+
+        Me.Message_Lbl.Text = Message
+        Me.Refresh()
+        Threading.Thread.Sleep(600)
+        Me.Message_Lbl.Text = "Ready"
+        Me.Refresh()
 
     End Sub
 

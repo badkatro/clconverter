@@ -43,6 +43,7 @@ Partial Class Form1
         Me.ChooseZip_Btn = New System.Windows.Forms.Button()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.ListViewBackgound_Lbl = New System.Windows.Forms.Label()
+        Me.Pin_UserformSize_Lbl = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -252,12 +253,27 @@ Partial Class Form1
         Me.ListViewBackgound_Lbl.Size = New System.Drawing.Size(378, 149)
         Me.ListViewBackgound_Lbl.TabIndex = 10
         '
+        'Pin_UserformSize_Lbl
+        '
+        Me.Pin_UserformSize_Lbl.AccessibleDescription = "Clear file list and remove temp folders"
+        Me.Pin_UserformSize_Lbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Pin_UserformSize_Lbl.Font = New System.Drawing.Font("Wingdings", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.Pin_UserformSize_Lbl.ForeColor = System.Drawing.Color.Maroon
+        Me.Pin_UserformSize_Lbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.Pin_UserformSize_Lbl.Location = New System.Drawing.Point(456, 36)
+        Me.Pin_UserformSize_Lbl.Name = "Pin_UserformSize_Lbl"
+        Me.Pin_UserformSize_Lbl.Size = New System.Drawing.Size(32, 28)
+        Me.Pin_UserformSize_Lbl.TabIndex = 11
+        Me.Pin_UserformSize_Lbl.Text = "w"
+        Me.Pin_UserformSize_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Form1
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(494, 196)
+        Me.Controls.Add(Me.Pin_UserformSize_Lbl)
         Me.Controls.Add(Me.FilesList_Lview)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToggleOptions_Lbl)
@@ -307,5 +323,6 @@ Partial Class Form1
     Friend WithEvents Default_BrowseTo_TxtBox As System.Windows.Forms.TextBox
     Friend WithEvents ChooseBrowseToFolder_Lbl As System.Windows.Forms.Label
     Friend WithEvents ListViewBackgound_Lbl As System.Windows.Forms.Label
+    Friend WithEvents Pin_UserformSize_Lbl As System.Windows.Forms.Label
 
 End Class
