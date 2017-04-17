@@ -29,6 +29,8 @@ Partial Class Form1
         Me.Message_Lbl = New System.Windows.Forms.Label()
         Me.ToggleOptions_Lbl = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.StartupFolder_Lbl = New System.Windows.Forms.Label()
+        Me.Default_BrowseToFolder_Cbox = New System.Windows.Forms.CheckBox()
         Me.AutoClean_Folders_Cbox = New System.Windows.Forms.CheckBox()
         Me.OpenOutputFolder_Cbox = New System.Windows.Forms.CheckBox()
         Me.ChooseWorkingFolder_Lbl = New System.Windows.Forms.Label()
@@ -39,6 +41,7 @@ Partial Class Form1
         Me.Process_Btn = New System.Windows.Forms.Button()
         Me.ChooseZip_Btn = New System.Windows.Forms.Button()
         Me.FileList_ViewMode_Lbl = New System.Windows.Forms.Label()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -102,6 +105,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.StartupFolder_Lbl)
+        Me.GroupBox1.Controls.Add(Me.Default_BrowseToFolder_Cbox)
         Me.GroupBox1.Controls.Add(Me.AutoClean_Folders_Cbox)
         Me.GroupBox1.Controls.Add(Me.OpenOutputFolder_Cbox)
         Me.GroupBox1.Controls.Add(Me.ChooseWorkingFolder_Lbl)
@@ -113,6 +118,29 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 8
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Options"
+        '
+        'StartupFolder_Lbl
+        '
+        Me.StartupFolder_Lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.StartupFolder_Lbl.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.StartupFolder_Lbl.Font = New System.Drawing.Font("GeoSlab703 MdCn BT", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StartupFolder_Lbl.ForeColor = System.Drawing.Color.MediumBlue
+        Me.StartupFolder_Lbl.Location = New System.Drawing.Point(153, 120)
+        Me.StartupFolder_Lbl.Name = "StartupFolder_Lbl"
+        Me.StartupFolder_Lbl.Size = New System.Drawing.Size(143, 18)
+        Me.StartupFolder_Lbl.TabIndex = 6
+        Me.StartupFolder_Lbl.Text = "None"
+        Me.StartupFolder_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Default_BrowseToFolder_Cbox
+        '
+        Me.Default_BrowseToFolder_Cbox.AutoSize = True
+        Me.Default_BrowseToFolder_Cbox.Location = New System.Drawing.Point(9, 120)
+        Me.Default_BrowseToFolder_Cbox.Name = "Default_BrowseToFolder_Cbox"
+        Me.Default_BrowseToFolder_Cbox.Size = New System.Drawing.Size(137, 17)
+        Me.Default_BrowseToFolder_Cbox.TabIndex = 5
+        Me.Default_BrowseToFolder_Cbox.Text = "Always browse to folder"
+        Me.Default_BrowseToFolder_Cbox.UseVisualStyleBackColor = True
         '
         'AutoClean_Folders_Cbox
         '
@@ -258,6 +286,8 @@ Partial Class Form1
     Friend WithEvents AutoClean_Folders_Cbox As System.Windows.Forms.CheckBox
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents FileList_ViewMode_Lbl As System.Windows.Forms.Label
-
+    Friend WithEvents StartupFolder_Lbl As System.Windows.Forms.Label
+    Friend WithEvents Default_BrowseToFolder_Cbox As System.Windows.Forms.CheckBox
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 
 End Class

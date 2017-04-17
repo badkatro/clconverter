@@ -33,8 +33,20 @@ Public Class Form1
 
         Using cfdialog As New OpenFileDialog
 
+            Dim browsingDirectory As String
+            browsingDirectory = My.Settings.Default_BrowseTo_Folder     ' Initialize quand-meme to C:\
+
+            ' But change if user desired
+            If Me.Default_BrowseToFolder_Cbox.Checked Then
+                browsingDirectory = My.Settings.Default_BrowseTo_Folder
+            Else    ' or just remember current folder
+                If Me.ChooseZip_Btn.Tag <> "" Then
+                    browsingDirectory = Me.ChooseZip_Btn.Tag
+                End If
+            End If
+
             cfdialog.Title = "Choose zip archive"
-            cfdialog.InitialDirectory = IIf(Me.ChooseZip_Btn.Tag <> "", Me.ChooseZip_Btn.Tag, "C:\")
+            cfdialog.InitialDirectory = browsingDirectory
             cfdialog.Filter = "All files (*.*)|*.*|Zip files (*.zip)|*.zip"
             cfdialog.FilterIndex = 2
             cfdialog.RestoreDirectory = True
@@ -339,7 +351,7 @@ Public Class Form1
         If Me.FilesList_Lview.Items.Count = 0 Then
             Me.Message_Lbl.Text = "No archives selected, Exiting..."
             Me.Refresh()
-            Threading.Thread.Sleep(700)
+            Threading.Thread.Sleep(400)
             Me.Message_Lbl.Text = "Ready"
             Me.Refresh()
             Exit Sub
@@ -709,11 +721,9 @@ Public Class Form1
             If countSubString(FileContent, tableRowRtfMarker) = 2 Then
                 tempResults(0).TableEndPosition = InStr(CInt(tempResults(0).TableStartPosition) + 6, FileContent, tableRowRtfMarker)
             End If
-            End If
+        End If
 
     End Function
-
-
 
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
@@ -845,6 +855,7 @@ Public Class Form1
         ' and restore user saved settings for our check-boxes
         Me.OpenOutputFolder_Cbox.Checked = My.Settings.App_Open_OutputFolder
         Me.AutoClean_Folders_Cbox.Checked = My.Settings.App_AutoClean_Folders
+        Me.Default_BrowseToFolder_Cbox.Checked = My.Settings.Default_BrowseTo_Folder
 
         '' Launch Word app upon launch, so as to make "Process" button faster
         'Me.Message_Lbl.Text = "Starting Word Application..."
@@ -914,7 +925,7 @@ Public Class Form1
 
     End Sub
 
-    
+
     Private Sub FileList_ViewMode_Lbl_Click(sender As Object, e As EventArgs) Handles FileList_ViewMode_Lbl.Click
 
         Select Case Me.FilesList_Lview.View
@@ -979,5 +990,21 @@ Public Class Form1
 
     Private Sub ToggleOptions_Lbl_MouseUp(sender As Object, e As MouseEventArgs) Handles ToggleOptions_Lbl.MouseUp
         Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.RoyalBlue
+    End Sub
+
+    Private Sub StartupFolder_Lbl_Click(sender As Object, e As EventArgs) Handles StartupFolder_Lbl.Click
+
+        If Me.Default_BrowseToFolder_Cbox.Checked Then
+
+            If Me.WorkingFolderBrowserDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Me.StartupFolder_Lbl.Text = Me.WorkingFolderBrowserDialog.SelectedPath
+                My.Settings.Default_BrowseTo_Folder = Me.WorkingFolderBrowserDialog.SelectedPath
+            Else    ' revert to default
+                Me.StartupFolder_Lbl.Text = "None"
+                My.Settings.Default_BrowseTo_Folder = "C:\"
+            End If
+
+        End If
+
     End Sub
 End Class

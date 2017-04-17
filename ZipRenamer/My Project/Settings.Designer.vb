@@ -89,6 +89,18 @@ Namespace My
                 Me("App_AutoClean_Folders") = value
             End Set
         End Property
+
+        <Global.System.Configuration.UserScopedSettingAttribute(), _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\")> _
+        Public Property Default_BrowseTo_Folder() As String
+            Get
+                Return CType(Me("Default_BrowseTo_Folder"), String)
+            End Get
+            Set(value As String)
+                Me("Default_BrowseTo_Folder") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
