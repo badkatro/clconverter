@@ -797,8 +797,15 @@ Public Class Form1
     Private Sub ChooseWorkingFolder_Lbl_Click(sender As Object, e As EventArgs) Handles ChooseWorkingFolder_Lbl.Click
 
         If Me.WorkingFolderBrowserDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            Me.CtWorkingFolder_TxtBox.Text = Me.WorkingFolderBrowserDialog.SelectedPath
+
+            If Directory.Exists(Path.Combine(Me.WorkingFolderBrowserDialog.SelectedPath, baseFolder)) Then
+                Me.CtWorkingFolder_TxtBox.Text = Path.Combine(Me.WorkingFolderBrowserDialog.SelectedPath, baseFolder)
+            Else
+                Me.CtWorkingFolder_TxtBox.Text = Me.WorkingFolderBrowserDialog.SelectedPath
+            End If
+
             My.Settings.Default_App_WorkingFolder = Me.WorkingFolderBrowserDialog.SelectedPath
+
         End If
 
     End Sub
@@ -873,13 +880,21 @@ Public Class Form1
     Private Sub RestoreFormOptions()
 
         ' and restore user saved settings for our check-boxes
-        Me.CtWorkingFolder_TxtBox.Text = My.Settings.Default_App_WorkingFolder
+        If Directory.Exists(Path.Combine(My.Settings.Default_App_WorkingFolder, baseInputFolder)) Then
+            Me.CtWorkingFolder_TxtBox.Text = Path.Combine(My.Settings.Default_App_WorkingFolder, baseInputFolder)
+        Else
+            Me.CtWorkingFolder_TxtBox.Text = My.Settings.Default_App_WorkingFolder
+        End If
 
         Me.OpenOutputFolder_Cbox.Checked = My.Settings.App_Open_OutputFolder
         Me.AutoClean_Folders_Cbox.Checked = My.Settings.App_AutoClean_Folders
         Me.Default_BrowseToFolder_Cbox.Checked = IIf(My.Settings.Default_BrowseTo_Folder <> "C:\", True, False)
 
-        If Me.Default_BrowseToFolder_Cbox.Checked Then Me.Default_BrowseTo_TxtBox.Text = My.Settings.Default_BrowseTo_Folder
+        If Me.Default_BrowseToFolder_Cbox.Checked Then
+            Me.Default_BrowseTo_TxtBox.Text = My.Settings.Default_BrowseTo_Folder
+            Me.Default_BrowseTo_TxtBox.Enabled = True
+        End If
+
 
     End Sub
 
@@ -1024,4 +1039,15 @@ Public Class Form1
         End If
 
     End Sub
+
+    Private Sub ChooseBrowseToFolder_Lbl_Click(sender As Object, e As EventArgs) Handles ChooseBrowseToFolder_Lbl.Click
+
+        If Me.Default_BrowseTo_TxtBox.Enabled Then
+            If Me.WorkingFolderBrowserDialog.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                Me.Default_BrowseTo_TxtBox.Text = Me.WorkingFolderBrowserDialog.SelectedPath
+                My.Settings.Default_BrowseTo_Folder = Me.WorkingFolderBrowserDialog.SelectedPath
+            End If
+        End If
+    End Sub
+
 End Class

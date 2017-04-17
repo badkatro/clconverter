@@ -29,6 +29,7 @@ Partial Class Form1
         Me.Message_Lbl = New System.Windows.Forms.Label()
         Me.ToggleOptions_Lbl = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ChooseBrowseToFolder_Lbl = New System.Windows.Forms.Label()
         Me.Default_BrowseTo_TxtBox = New System.Windows.Forms.TextBox()
         Me.Default_BrowseToFolder_Cbox = New System.Windows.Forms.CheckBox()
         Me.AutoClean_Folders_Cbox = New System.Windows.Forms.CheckBox()
@@ -52,12 +53,12 @@ Partial Class Form1
         Me.FilesList_Lview.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.FilesList_Lview.Location = New System.Drawing.Point(73, 12)
-        Me.FilesList_Lview.Margin = New System.Windows.Forms.Padding(5)
+        Me.FilesList_Lview.Margin = New System.Windows.Forms.Padding(100, 5, 5, 5)
         Me.FilesList_Lview.Name = "FilesList_Lview"
         Me.FilesList_Lview.Size = New System.Drawing.Size(378, 149)
         Me.FilesList_Lview.TabIndex = 1
         Me.FilesList_Lview.UseCompatibleStateImageBehavior = False
-        Me.FilesList_Lview.View = System.Windows.Forms.View.List
+        Me.FilesList_Lview.View = System.Windows.Forms.View.SmallIcon
         '
         'ClearList_Lbl
         '
@@ -105,6 +106,7 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.ChooseBrowseToFolder_Lbl)
         Me.GroupBox1.Controls.Add(Me.Default_BrowseTo_TxtBox)
         Me.GroupBox1.Controls.Add(Me.Default_BrowseToFolder_Cbox)
         Me.GroupBox1.Controls.Add(Me.AutoClean_Folders_Cbox)
@@ -119,12 +121,25 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Options"
         '
+        'ChooseBrowseToFolder_Lbl
+        '
+        Me.ChooseBrowseToFolder_Lbl.BackColor = System.Drawing.Color.Lavender
+        Me.ChooseBrowseToFolder_Lbl.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ChooseBrowseToFolder_Lbl.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChooseBrowseToFolder_Lbl.ForeColor = System.Drawing.Color.Black
+        Me.ChooseBrowseToFolder_Lbl.Location = New System.Drawing.Point(272, 139)
+        Me.ChooseBrowseToFolder_Lbl.Name = "ChooseBrowseToFolder_Lbl"
+        Me.ChooseBrowseToFolder_Lbl.Size = New System.Drawing.Size(23, 21)
+        Me.ChooseBrowseToFolder_Lbl.TabIndex = 7
+        Me.ChooseBrowseToFolder_Lbl.Text = "..."
+        Me.ChooseBrowseToFolder_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Default_BrowseTo_TxtBox
         '
         Me.Default_BrowseTo_TxtBox.Enabled = False
         Me.Default_BrowseTo_TxtBox.Location = New System.Drawing.Point(9, 140)
         Me.Default_BrowseTo_TxtBox.Name = "Default_BrowseTo_TxtBox"
-        Me.Default_BrowseTo_TxtBox.Size = New System.Drawing.Size(251, 20)
+        Me.Default_BrowseTo_TxtBox.Size = New System.Drawing.Size(258, 20)
         Me.Default_BrowseTo_TxtBox.TabIndex = 6
         '
         'Default_BrowseToFolder_Cbox
@@ -140,7 +155,7 @@ Partial Class Form1
         'AutoClean_Folders_Cbox
         '
         Me.AutoClean_Folders_Cbox.AutoSize = True
-        Me.AutoClean_Folders_Cbox.Location = New System.Drawing.Point(9, 96)
+        Me.AutoClean_Folders_Cbox.Location = New System.Drawing.Point(9, 94)
         Me.AutoClean_Folders_Cbox.Name = "AutoClean_Folders_Cbox"
         Me.AutoClean_Folders_Cbox.Size = New System.Drawing.Size(220, 17)
         Me.AutoClean_Folders_Cbox.TabIndex = 4
@@ -150,7 +165,7 @@ Partial Class Form1
         'OpenOutputFolder_Cbox
         '
         Me.OpenOutputFolder_Cbox.AutoSize = True
-        Me.OpenOutputFolder_Cbox.Location = New System.Drawing.Point(9, 72)
+        Me.OpenOutputFolder_Cbox.Location = New System.Drawing.Point(9, 68)
         Me.OpenOutputFolder_Cbox.Name = "OpenOutputFolder_Cbox"
         Me.OpenOutputFolder_Cbox.Size = New System.Drawing.Size(170, 17)
         Me.OpenOutputFolder_Cbox.TabIndex = 3
@@ -173,10 +188,10 @@ Partial Class Form1
         'CtWorkingFolder_TxtBox
         '
         Me.CtWorkingFolder_TxtBox.AccessibleDescription = "Main folder of app, where it copies input and produces output"
-        Me.CtWorkingFolder_TxtBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CtWorkingFolder_TxtBox.Location = New System.Drawing.Point(6, 38)
+        Me.CtWorkingFolder_TxtBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CtWorkingFolder_TxtBox.Location = New System.Drawing.Point(9, 38)
         Me.CtWorkingFolder_TxtBox.Name = "CtWorkingFolder_TxtBox"
-        Me.CtWorkingFolder_TxtBox.Size = New System.Drawing.Size(260, 21)
+        Me.CtWorkingFolder_TxtBox.Size = New System.Drawing.Size(258, 20)
         Me.CtWorkingFolder_TxtBox.TabIndex = 1
         '
         'WorkingFolder_Lbl
@@ -284,5 +299,6 @@ Partial Class Form1
     Friend WithEvents Default_BrowseToFolder_Cbox As System.Windows.Forms.CheckBox
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Default_BrowseTo_TxtBox As System.Windows.Forms.TextBox
+    Friend WithEvents ChooseBrowseToFolder_Lbl As System.Windows.Forms.Label
 
 End Class
