@@ -35,7 +35,7 @@ Public Class Form1
         Me.Message_Lbl.Text = "Ready"
 
         Me.FilesList_Lview.SmallImageList = zipIcons
-        Me.FilesList_Lview.LargeImageList = zipIcons
+        'Me.FilesList_Lview.LargeImageList = zipIcons
 
         Using cfdialog As New OpenFileDialog
 
@@ -51,7 +51,7 @@ Public Class Form1
                 End If
             End If
 
-            cfdialog.Title = "Choose zip archive"
+            cfdialog.Title = "Please select zip archive"
             cfdialog.InitialDirectory = browsingDirectory
             cfdialog.Filter = "All files (*.*)|*.*|Zip files (*.zip)|*.zip"
             cfdialog.FilterIndex = 2
@@ -63,18 +63,6 @@ Public Class Form1
 
             Dim chosenFile As String
 
-            Dim Iidx As Integer
-
-            Select Case FilesList_Lview.View
-
-                Case System.Windows.Forms.View.LargeIcon
-                    Iidx = 2
-                Case System.Windows.Forms.View.SmallIcon
-                    Iidx = 1
-                Case Else
-                    Iidx = 0
-
-            End Select
 
             ' Save last used directory
             Me.ChooseZip_Btn.Tag = Path.GetDirectoryName(cfdialog.FileNames(0))
@@ -85,7 +73,7 @@ Public Class Form1
                 Dim newLviewItem As New ListViewItem
 
                 newLviewItem.Text = Path.GetFileName(chosenFile)
-                newLviewItem.ImageIndex = Iidx
+                newLviewItem.ImageIndex = 1
                 newLviewItem.Tag = chosenFile
 
                 Me.FilesList_Lview.Items.Add(newLviewItem)
@@ -107,7 +95,11 @@ Public Class Form1
 
         Me.Message_Lbl.Text = "Ready"
 
+        Me.FilesList_Lview.SmallImageList = zipIcons
+
         Dim files() As String = e.Data.GetData(DataFormats.FileDrop)
+
+        Dim newLviewItem As New ListViewItem
 
         For Each chosenFile In files
 
@@ -120,13 +112,28 @@ Public Class Form1
                 For Each file In containedFiles
 
                     If Path.GetExtension(file).ToLower = ".zip" Then
-                        Me.FilesList_Lview.Items.Add(file)
+
+                        'Me.FilesList_Lview.Items.Add(file)
+
+                        newLviewItem.Text = Path.GetFileName(file)
+                        newLviewItem.ImageIndex = 1
+                        newLviewItem.Tag = file
+
+                        Me.FilesList_Lview.Items.Add(newLviewItem)
+                        ' Save complete 
+
                     End If
 
                 Next file
 
-            Else
-                Me.FilesList_Lview.Items.Add(chosenFile)
+            Else    ' no folder selected, just one or more files
+
+                newLviewItem.Text = Path.GetFileName(chosenFile)
+                newLviewItem.ImageIndex = 1
+                newLviewItem.Tag = chosenFile
+
+                Me.FilesList_Lview.Items.Add(newLviewItem)
+
             End If
 
         Next chosenFile
