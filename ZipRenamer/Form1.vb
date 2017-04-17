@@ -28,15 +28,13 @@ Public Class Form1
 
         Me.Message_Lbl.Text = "Ready"
 
-        
-
         Me.FilesList_Lview.SmallImageList = zipIcons
         Me.FilesList_Lview.LargeImageList = zipIcons
 
         Using cfdialog As New OpenFileDialog
 
             cfdialog.Title = "Choose zip archive"
-            cfdialog.InitialDirectory = "C:\"
+            cfdialog.InitialDirectory = IIf(Me.ChooseZip_Btn.Tag <> "", Me.ChooseZip_Btn.Tag, "C:\")
             cfdialog.Filter = "All files (*.*)|*.*|Zip files (*.zip)|*.zip"
             cfdialog.FilterIndex = 2
             cfdialog.RestoreDirectory = True
@@ -60,9 +58,21 @@ Public Class Form1
 
             End Select
 
+            ' Save last used directory
+            Me.ChooseZip_Btn.Tag = Path.GetDirectoryName(cfdialog.FileNames(0))
+
             ' And populate the listview with file names
             For Each chosenFile In cfdialog.FileNames
-                Me.FilesList_Lview.Items.Add(Path.GetFileName(chosenFile), Iidx)
+
+                Dim newLviewItem As New ListViewItem
+
+                newLviewItem.Text = Path.GetFileName(chosenFile)
+                newLviewItem.ImageIndex = Iidx
+                newLviewItem.Tag = chosenFile
+
+                Me.FilesList_Lview.Items.Add(newLviewItem)
+                ' Save complete 
+
             Next chosenFile
 
         End Using
@@ -160,9 +170,9 @@ Public Class Form1
         For Each zipArchive In Me.FilesList_Lview.Items
 
             Dim zipTempFolder As String
-            zipTempFolder = Path.Combine(hostFolder, Path.GetFileNameWithoutExtension(zipArchive.Text.ToString))
+            zipTempFolder = Path.Combine(hostFolder, Path.GetFileNameWithoutExtension(zipArchive.Tag.ToString))
 
-            Using arch = ZipFile.Open(zipArchive.Text.ToString, ZipArchiveMode.Read)
+            Using arch = ZipFile.Open(zipArchive.Tag.ToString, ZipArchiveMode.Read)
 
                 If Directory.Exists(zipTempFolder) Then
                     ' Clean before trying to extract
