@@ -341,13 +341,9 @@ Public Class Form1
 
     End Function
 
+    Private Sub CheckLaunchNoFiles()
 
-    Private Sub Process_Btn_Click(sender As Object, e As EventArgs) Handles Process_Btn.Click
-
-        Dim start_time As DateTime
-        Dim end_time As DateTime
-        Dim elapsed_time As TimeSpan
-
+        ' Launching wihout selected archives is a no-no...
         If Me.FilesList_Lview.Items.Count = 0 Then
             Me.Message_Lbl.Text = "No archives selected, Exiting..."
             Me.Refresh()
@@ -357,7 +353,16 @@ Public Class Form1
             Exit Sub
         End If
 
+    End Sub
 
+    Private Sub Process_Btn_Click(sender As Object, e As EventArgs) Handles Process_Btn.Click
+
+        Dim start_time As DateTime
+        Dim end_time As DateTime
+        Dim elapsed_time As TimeSpan
+
+        ' Launching wihout selected archives is a no-no...
+        Call CheckLaunchNoFiles()
 
         ' DEBUG
         start_time = Now
@@ -366,6 +371,7 @@ Public Class Form1
 
         ' uncover the progress bar
         Me.FilesList_Lview.Height = Me.FilesList_Lview.Height - 12
+        Me.ListViewBackgound_Lbl.Height = Me.ListViewBackgound_Lbl.Height - 12
 
         Call CheckCreateWorkingFolders()
 
@@ -398,7 +404,13 @@ Public Class Form1
         'archivesProcessResult = Convert_RtfsToDocs_InAllFolders_OXML(inputArchivesDirs)
 
         If Not archivesProcessResult = "-1" Then     ' Success
-            MsgBox("Processing archive(s) " & archivesProcessResult & " failed!", vbOKOnly + MsgBoxStyle.Information)
+            If MsgBox("Processing archive(s) " & archivesProcessResult & " failed!" & vbCr & vbCr & _
+                   "Would you continue zipping succesfully processed files?", vbYesNo + MsgBoxStyle.Question) = MsgBoxResult.No Then
+
+                Me.Message_Lbl.Text = "Aborted"
+                Exit Sub
+
+            End If
         End If
 
 
@@ -419,11 +431,8 @@ Public Class Form1
         ' Launch explorer with output folder if user chose it
         If My.Settings.App_Open_OutputFolder Then Process.Start("explorer.exe", hostFolder)
 
-        ' and also clean folders of temp files if user so desires
-        If My.Settings.App_AutoClean_Folders Then
-            Me.Message_Lbl.Text = "Auto-Cleaning app folders..."
-            Call ClearInOutFolders()
-        End If
+        ' Also clean temp folders if required
+        Call CleanTempFolders()
 
 
         If Me.ProgressBar1.Value <> 100 Then Me.ProgressBar1.Value = 100
@@ -434,6 +443,7 @@ Public Class Form1
 
         ' cover the progress bar again... not needed
         Me.FilesList_Lview.Height = Me.FilesList_Lview.Height + 12
+        Me.ListViewBackgound_Lbl.Height = Me.ListViewBackgound_Lbl.Height + 12
 
         Me.Message_Lbl.Text = "All done"
 
@@ -446,6 +456,17 @@ Public Class Form1
         elapsed_time = end_time.Subtract(start_time)
 
         Me.Message_Lbl.Text = Me.Message_Lbl.Text & " (" & elapsed_time.TotalSeconds.ToString("0.000") & "s)"
+
+    End Sub
+
+    Private Sub CleanTempFolders()
+
+        ' and also clean folders of temp files if user so desires
+        If My.Settings.App_AutoClean_Folders Then
+            Me.Message_Lbl.Text = "Auto-Cleaning app folders..."
+            Me.Refresh()
+            Call ClearInOutFolders()
+        End If
 
     End Sub
 
@@ -815,9 +836,52 @@ Public Class Form1
 
         If Me.Width < 520 Then
 
+            Call Set_Anchors_forFormResize(True)
+
             Me.Width = 830  ' Open options part of form (widen it)
         Else    ' Close it
             Me.Width = 510
+
+            Call Set_Anchors_forFormResize(False)
+
+        End If
+
+    End Sub
+
+    Private Sub Set_Anchors_forFormResize(ByVal AnchorsSetting As Boolean)
+
+        If AnchorsSetting Then      ' De-Anchor controls, prepare for form resize
+
+            ' hold listview, its back label and the right side controls in place
+            Me.ListViewBackgound_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Top + AnchorStyles.Bottom
+            Me.FilesList_Lview.Anchor = AnchorStyles.Left + AnchorStyles.Top + AnchorStyles.Bottom
+            '
+            Me.ClearList_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Top
+            Me.FileList_ViewMode_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Top
+            Me.ToggleOptions_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Bottom
+            '
+            Me.ProgressBar1.Anchor = AnchorStyles.Left + AnchorStyles.Bottom
+            Me.Message_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Bottom
+
+            ' and hold options group box in place
+            Me.GroupBox1.Anchor = AnchorStyles.Left + AnchorStyles.Top
+
+        Else    ' Re-anchor for default behaviour, meaning form resize causes listview resize and right side controls move
+
+            ' hold listview, its back label and the right side controls in place
+            Me.ListViewBackgound_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Top + AnchorStyles.Bottom + AnchorStyles.Right
+            Me.FilesList_Lview.Anchor = AnchorStyles.Left + AnchorStyles.Top + AnchorStyles.Bottom + AnchorStyles.Right
+            '
+            Me.ClearList_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Top
+            Me.FileList_ViewMode_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Top
+            Me.ToggleOptions_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Bottom
+            '
+            Me.ProgressBar1.Anchor = AnchorStyles.Left + AnchorStyles.Bottom + AnchorStyles.Right
+            Me.Message_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Bottom + AnchorStyles.Right
+
+            ' and hold options group box in place
+            Me.GroupBox1.Anchor = AnchorStyles.Right + AnchorStyles.Top
+
         End If
 
     End Sub
@@ -1018,7 +1082,7 @@ Public Class Form1
         Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.RoyalBlue
     End Sub
 
-   
+
     Private Sub Default_BrowseToFolder_Cbox_Click(sender As Object, e As EventArgs) Handles Default_BrowseToFolder_Cbox.Click
 
         If Me.Default_BrowseToFolder_Cbox.Checked Then
