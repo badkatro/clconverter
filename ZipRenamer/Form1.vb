@@ -1123,11 +1123,13 @@ Public Class Form1
 
     Private Sub Pin_UserformSize_Lbl_Click(sender As Object, e As EventArgs) Handles Pin_UserformSize_Lbl.Click
 
-        If Me.Width <> 510 And Me.Height <> 234 Then
+        If Me.Width <> My.Settings.FormDefaultWidth Or Me.Height <> My.Settings.FormDefaultHeight Then
+
             My.Settings.FormDefaultWidth = Me.Width
             My.Settings.FormDefaultHeight = Me.Height
 
             Call ShowTemporaryMessage("New form default size set ")
+
         End If
 
     End Sub
