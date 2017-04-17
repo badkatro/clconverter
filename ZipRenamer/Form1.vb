@@ -15,6 +15,8 @@ End Structure
 
 Public Class Form1
 
+    Private Property wdHandle As Integer
+
     Private Property Options_Opened As Boolean = False
 
     Public RTFConverter As RichTextBox
@@ -994,11 +996,17 @@ Public Class Form1
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+
         timerCount = timerCount + 1
+
         If IsNothing(Me.wordApp) Then
             Me.Cursor = Cursors.AppStarting
             Me.Message_Lbl.Text = "Starting Word application..."
             Me.wordApp = New Word.Application
+
+            'wdHandle = wordApp.ActiveWindow.Hwnd
+            ' MsgBox("Word handle captured as " & wdHandle)
+
         End If
 
         If timerCount = 2 Then
@@ -1006,6 +1014,7 @@ Public Class Form1
             Timer1.Stop()
             Me.Message_Lbl.Text = "Ready"
         End If
+
     End Sub
 
     Private Sub RichTextBox1_Click(sender As Object, e As EventArgs)
