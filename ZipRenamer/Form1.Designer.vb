@@ -92,7 +92,7 @@ Partial Class Form1
         Me.ToggleOptions_Lbl.AccessibleDescription = "Open/Close options"
         Me.ToggleOptions_Lbl.BackColor = System.Drawing.Color.Transparent
         Me.ToggleOptions_Lbl.Font = New System.Drawing.Font("Webdings", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.ToggleOptions_Lbl.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.RoyalBlue
         Me.ToggleOptions_Lbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.ToggleOptions_Lbl.Location = New System.Drawing.Point(452, 135)
         Me.ToggleOptions_Lbl.Name = "ToggleOptions_Lbl"

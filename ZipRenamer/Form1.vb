@@ -332,6 +332,24 @@ Public Class Form1
 
     Private Sub Process_Btn_Click(sender As Object, e As EventArgs) Handles Process_Btn.Click
 
+        Dim start_time As DateTime
+        Dim end_time As DateTime
+        Dim elapsed_time As TimeSpan
+
+        If Me.FilesList_Lview.Items.Count = 0 Then
+            Me.Message_Lbl.Text = "No archives selected, Exiting..."
+            Me.Refresh()
+            Threading.Thread.Sleep(700)
+            Me.Message_Lbl.Text = "Ready"
+            Me.Refresh()
+            Exit Sub
+        End If
+
+
+
+        ' DEBUG
+        start_time = Now
+
         Me.FilesList_Lview.UseWaitCursor = True
 
         ' uncover the progress bar
@@ -411,6 +429,11 @@ Public Class Form1
         'Dim ddocx As Novacode.DocX = Novacode.DocX.Load()
         'ddocx.c()
         'OpenXmlPowerTools.DocumentAssembler.()
+
+        end_time = Now
+        elapsed_time = end_time.Subtract(start_time)
+
+        Me.Message_Lbl.Text = Me.Message_Lbl.Text & " (" & elapsed_time.TotalSeconds.ToString("0.000") & "s)"
 
     End Sub
 
@@ -609,7 +632,7 @@ Public Class Form1
 
     End Sub
 
-    Private Function Insert_Rtf_ToDocx(WordProcessingDocFilename As String, ByVal RtfToImportFilename As String) As Boolean
+    <System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")> Private Function Insert_Rtf_ToDocx(WordProcessingDocFilename As String, ByVal RtfToImportFilename As String) As Boolean
 
         'Dim wordDocument As WordprocessingDocument = WordProcessingDocument.Create(Path.Combine(Path.Combine(My.Settings.Default_App_WorkingFolder, baseOutputFolder), Path.GetFileNameWithoutExtension(InputRtfFilename)) & ".docx", DocumentFormat.OpenXml.WordprocessingDocumentType.Document)
 
@@ -635,7 +658,7 @@ Public Class Form1
 
             mainDocPart.Document.Save()
 
-            wordDoc.Close()
+            'wordDoc.Close()
 
         End Using
 
@@ -934,4 +957,27 @@ Public Class Form1
 
 
 
+    Private Sub ClearList_Lbl_MouseDown(sender As Object, e As MouseEventArgs) Handles ClearList_Lbl.MouseDown
+        Me.ClearList_Lbl.ForeColor = System.Drawing.Color.DarkViolet
+    End Sub
+
+    Private Sub ClearList_Lbl_MouseUp(sender As Object, e As MouseEventArgs) Handles ClearList_Lbl.MouseUp
+        Me.ClearList_Lbl.ForeColor = System.Drawing.Color.Red
+    End Sub
+
+    Private Sub FileList_ViewMode_Lbl_MouseDown(sender As Object, e As MouseEventArgs) Handles FileList_ViewMode_Lbl.MouseDown
+        Me.FileList_ViewMode_Lbl.ForeColor = System.Drawing.Color.DarkViolet
+    End Sub
+
+    Private Sub FileList_ViewMode_Lbl_MouseUp(sender As Object, e As MouseEventArgs) Handles FileList_ViewMode_Lbl.MouseUp
+        Me.FileList_ViewMode_Lbl.ForeColor = System.Drawing.Color.Maroon
+    End Sub
+
+    Private Sub ToggleOptions_Lbl_MouseDown(sender As Object, e As MouseEventArgs) Handles ToggleOptions_Lbl.MouseDown
+        Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.DarkViolet
+    End Sub
+
+    Private Sub ToggleOptions_Lbl_MouseUp(sender As Object, e As MouseEventArgs) Handles ToggleOptions_Lbl.MouseUp
+        Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.RoyalBlue
+    End Sub
 End Class
