@@ -15,6 +15,8 @@ End Structure
 
 Public Class Form1
 
+    Private Property Options_Opened As Boolean = False
+
     Public RTFConverter As RichTextBox
     Public Property wordApp As Word.Application
     Public timerCount As Integer
@@ -831,38 +833,26 @@ Public Class Form1
 
     Private Sub ToggleOptions_Lbl_Click(sender As Object, e As EventArgs) Handles ToggleOptions_Lbl.Click
 
-        If My.Settings.FormDefaultWidth = 0 Then
+        ' We're collapsed
+        If Me.Options_Opened = False Then
 
+            ' Lock controls to enable form widening
+            Call Set_Anchors_forFormResize(True)
 
-            If Me.Width = 510 Then
+            Me.Width = Me.Width + My.Settings.App_Options_GroupBox_Width
 
-                Call Set_Anchors_forFormResize(True)
+            ' Raise flag that form is widened
+            Me.Options_Opened = True
 
-                Me.Width = Me.Width + 320  ' Open options part of form (widen it)
+        Else    ' we're not collapsed
 
-            Else    ' Close it
+            Me.Width = Me.Width - My.Settings.App_Options_GroupBox_Width
 
-                Me.Width = Me.Width - 320
+            ' Raise flag that form is widened
+            Me.Options_Opened = False
 
-                Call Set_Anchors_forFormResize(False)
-
-            End If
-
-        Else    ' User HAS se custom default sizes
-
-            If Me.GroupBox1.Left > Me.Width Then    ' when collapsed, userform will be smaller than left side position of options groupbox
-
-                Call Set_Anchors_forFormResize(True)
-
-                Me.Width = Me.Width + 320
-
-            Else    ' we're not collapsed
-
-                Me.Width = Me.Width - 320
-
-                Call Set_Anchors_forFormResize(False)
-
-            End If
+            ' Unlock controls right back, form resizing moves them too (options part unaccessible)
+            Call Set_Anchors_forFormResize(False)
 
         End If
 
@@ -1117,32 +1107,17 @@ Public Class Form1
     End Sub
 
     Private Sub SetForm_Dimensions(UserformWidth As Integer, UserformHeight As Integer)
-        'Throw New NotImplementedException
 
-        ' unlock for resize
+        ' Lock controls for resize form while not showing options
         Call Set_Anchors_forFormResize(False)
 
-        ' should user not have messed with settings, behave default
-        If UserformWidth = 0 And UserformHeight = 0 Then
+        Me.Width = UserformWidth
+        Me.Height = UserformHeight
 
-            Me.Width = 510
-            Me.Height = 234
+        Me.Options_Opened = False
 
-            'and relock
-            'Call Set_Anchors_forFormResize(False)
-
-        Else    ' User HAS set new default width and height as preffered
-
-            ' unlock for resize
-            'Call Set_Anchors_forFormResize(False)
-
-            Me.Width = UserformWidth
-            Me.Height = UserformHeight
-
-            ' and relock
-            'Call Set_Anchors_forFormResize(False)
-
-        End If
+        ' and relock
+        'Call Set_Anchors_forFormResize(False)
 
     End Sub
 
@@ -1166,7 +1141,6 @@ Public Class Form1
     End Sub
 
     Private Sub ShowTemporaryMessage(Message As String)
-        'Throw New NotImplementedException
 
         Me.Message_Lbl.Text = Message
         Me.Refresh()

@@ -104,7 +104,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("510")>  _
         Public Property FormDefaultWidth() As Integer
             Get
                 Return CType(Me("FormDefaultWidth"),Integer)
@@ -116,7 +116,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("234")>  _
         Public Property FormDefaultHeight() As Integer
             Get
                 Return CType(Me("FormDefaultHeight"),Integer)
@@ -124,6 +124,15 @@ Namespace My
             Set
                 Me("FormDefaultHeight") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("320")>  _
+        Public ReadOnly Property App_Options_GroupBox_Width() As Integer
+            Get
+                Return CType(Me("App_Options_GroupBox_Width"),Integer)
+            End Get
         End Property
     End Class
 End Namespace

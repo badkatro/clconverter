@@ -102,7 +102,7 @@ Partial Class Form1
         Me.ToggleOptions_Lbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ToggleOptions_Lbl.BackColor = System.Drawing.Color.Transparent
         Me.ToggleOptions_Lbl.Font = New System.Drawing.Font("Webdings", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.RoyalBlue
+        Me.ToggleOptions_Lbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.ToggleOptions_Lbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.ToggleOptions_Lbl.Location = New System.Drawing.Point(451, 135)
         Me.ToggleOptions_Lbl.Name = "ToggleOptions_Lbl"
@@ -222,7 +222,7 @@ Partial Class Form1
         Me.Process_Btn.FlatAppearance.BorderSize = 0
         Me.Process_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Process_Btn.Image = Global.CLConverter.My.Resources.Resources.convert_32
-        Me.Process_Btn.Location = New System.Drawing.Point(18, 117)
+        Me.Process_Btn.Location = New System.Drawing.Point(16, 117)
         Me.Process_Btn.Name = "Process_Btn"
         Me.Process_Btn.Size = New System.Drawing.Size(44, 44)
         Me.Process_Btn.TabIndex = 4
@@ -234,7 +234,7 @@ Partial Class Form1
         Me.ChooseZip_Btn.FlatAppearance.BorderSize = 0
         Me.ChooseZip_Btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ChooseZip_Btn.Image = Global.CLConverter.My.Resources.Resources.format_zip
-        Me.ChooseZip_Btn.Location = New System.Drawing.Point(12, 7)
+        Me.ChooseZip_Btn.Location = New System.Drawing.Point(15, 7)
         Me.ChooseZip_Btn.Name = "ChooseZip_Btn"
         Me.ChooseZip_Btn.Size = New System.Drawing.Size(49, 52)
         Me.ChooseZip_Btn.TabIndex = 0
@@ -258,7 +258,7 @@ Partial Class Form1
         Me.Pin_UserformSize_Lbl.AccessibleDescription = "Clear file list and remove temp folders"
         Me.Pin_UserformSize_Lbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Pin_UserformSize_Lbl.Font = New System.Drawing.Font("Wingdings", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.Pin_UserformSize_Lbl.ForeColor = System.Drawing.Color.Maroon
+        Me.Pin_UserformSize_Lbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.Pin_UserformSize_Lbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Pin_UserformSize_Lbl.Location = New System.Drawing.Point(456, 36)
         Me.Pin_UserformSize_Lbl.Name = "Pin_UserformSize_Lbl"
