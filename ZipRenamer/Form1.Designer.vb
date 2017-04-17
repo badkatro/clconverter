@@ -41,7 +41,6 @@ Partial Class Form1
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Process_Btn = New System.Windows.Forms.Button()
         Me.ChooseZip_Btn = New System.Windows.Forms.Button()
-        Me.FileList_ViewMode_Lbl = New System.Windows.Forms.Label()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.ListViewBackgound_Lbl = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
@@ -58,7 +57,7 @@ Partial Class Form1
         Me.FilesList_Lview.Location = New System.Drawing.Point(80, 19)
         Me.FilesList_Lview.Margin = New System.Windows.Forms.Padding(10)
         Me.FilesList_Lview.Name = "FilesList_Lview"
-        Me.FilesList_Lview.Size = New System.Drawing.Size(365, 136)
+        Me.FilesList_Lview.Size = New System.Drawing.Size(364, 136)
         Me.FilesList_Lview.TabIndex = 1
         Me.FilesList_Lview.UseCompatibleStateImageBehavior = False
         Me.FilesList_Lview.View = System.Windows.Forms.View.SmallIcon
@@ -70,7 +69,7 @@ Partial Class Form1
         Me.ClearList_Lbl.Font = New System.Drawing.Font("Wingdings", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.ClearList_Lbl.ForeColor = System.Drawing.Color.Red
         Me.ClearList_Lbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.ClearList_Lbl.Location = New System.Drawing.Point(453, 7)
+        Me.ClearList_Lbl.Location = New System.Drawing.Point(452, 7)
         Me.ClearList_Lbl.Name = "ClearList_Lbl"
         Me.ClearList_Lbl.Size = New System.Drawing.Size(36, 28)
         Me.ClearList_Lbl.TabIndex = 3
@@ -83,7 +82,7 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ProgressBar1.Location = New System.Drawing.Point(73, 146)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(378, 15)
+        Me.ProgressBar1.Size = New System.Drawing.Size(377, 15)
         Me.ProgressBar1.TabIndex = 5
         '
         'Message_Lbl
@@ -93,7 +92,7 @@ Partial Class Form1
         Me.Message_Lbl.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.Message_Lbl.Location = New System.Drawing.Point(15, 172)
         Me.Message_Lbl.Name = "Message_Lbl"
-        Me.Message_Lbl.Size = New System.Drawing.Size(470, 15)
+        Me.Message_Lbl.Size = New System.Drawing.Size(469, 15)
         Me.Message_Lbl.TabIndex = 6
         '
         'ToggleOptions_Lbl
@@ -104,7 +103,7 @@ Partial Class Form1
         Me.ToggleOptions_Lbl.Font = New System.Drawing.Font("Webdings", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
         Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.RoyalBlue
         Me.ToggleOptions_Lbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.ToggleOptions_Lbl.Location = New System.Drawing.Point(452, 135)
+        Me.ToggleOptions_Lbl.Location = New System.Drawing.Point(451, 135)
         Me.ToggleOptions_Lbl.Name = "ToggleOptions_Lbl"
         Me.ToggleOptions_Lbl.Size = New System.Drawing.Size(38, 33)
         Me.ToggleOptions_Lbl.TabIndex = 7
@@ -121,7 +120,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.ChooseWorkingFolder_Lbl)
         Me.GroupBox1.Controls.Add(Me.CtWorkingFolder_TxtBox)
         Me.GroupBox1.Controls.Add(Me.WorkingFolder_Lbl)
-        Me.GroupBox1.Location = New System.Drawing.Point(497, 5)
+        Me.GroupBox1.Location = New System.Drawing.Point(496, 5)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(304, 184)
         Me.GroupBox1.TabIndex = 8
@@ -240,19 +239,6 @@ Partial Class Form1
         Me.ChooseZip_Btn.TabIndex = 0
         Me.ChooseZip_Btn.UseVisualStyleBackColor = True
         '
-        'FileList_ViewMode_Lbl
-        '
-        Me.FileList_ViewMode_Lbl.AccessibleDescription = "Change file list view mode"
-        Me.FileList_ViewMode_Lbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FileList_ViewMode_Lbl.Font = New System.Drawing.Font("Webdings", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.FileList_ViewMode_Lbl.ForeColor = System.Drawing.Color.Maroon
-        Me.FileList_ViewMode_Lbl.Location = New System.Drawing.Point(454, 40)
-        Me.FileList_ViewMode_Lbl.Name = "FileList_ViewMode_Lbl"
-        Me.FileList_ViewMode_Lbl.Size = New System.Drawing.Size(36, 26)
-        Me.FileList_ViewMode_Lbl.TabIndex = 9
-        Me.FileList_ViewMode_Lbl.Text = ">"
-        Me.FileList_ViewMode_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'ListViewBackgound_Lbl
         '
         Me.ListViewBackgound_Lbl.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -263,7 +249,7 @@ Partial Class Form1
         Me.ListViewBackgound_Lbl.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ListViewBackgound_Lbl.Location = New System.Drawing.Point(73, 12)
         Me.ListViewBackgound_Lbl.Name = "ListViewBackgound_Lbl"
-        Me.ListViewBackgound_Lbl.Size = New System.Drawing.Size(379, 149)
+        Me.ListViewBackgound_Lbl.Size = New System.Drawing.Size(378, 149)
         Me.ListViewBackgound_Lbl.TabIndex = 10
         '
         'Form1
@@ -271,8 +257,7 @@ Partial Class Form1
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(495, 196)
-        Me.Controls.Add(Me.FileList_ViewMode_Lbl)
+        Me.ClientSize = New System.Drawing.Size(494, 196)
         Me.Controls.Add(Me.FilesList_Lview)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToggleOptions_Lbl)
@@ -317,7 +302,6 @@ Partial Class Form1
     Friend WithEvents OpenOutputFolder_Cbox As System.Windows.Forms.CheckBox
     Friend WithEvents AutoClean_Folders_Cbox As System.Windows.Forms.CheckBox
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
-    Friend WithEvents FileList_ViewMode_Lbl As System.Windows.Forms.Label
     Friend WithEvents Default_BrowseToFolder_Cbox As System.Windows.Forms.CheckBox
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Default_BrowseTo_TxtBox As System.Windows.Forms.TextBox

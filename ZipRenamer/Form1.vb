@@ -834,17 +834,36 @@ Public Class Form1
 
     Private Sub ToggleOptions_Lbl_Click(sender As Object, e As EventArgs) Handles ToggleOptions_Lbl.Click
 
-        If Me.Width < 520 Then
+        If My.Settings.FormDefaultWidth = 0 Then
 
-            Call Set_Anchors_forFormResize(True)
+            If Me.Width < 520 Then
 
-            Me.Width = 830  ' Open options part of form (widen it)
-        Else    ' Close it
-            Me.Width = 510
+                Call Set_Anchors_forFormResize(True)
 
-            Call Set_Anchors_forFormResize(False)
+                Me.Width = Me.Width + 320  ' Open options part of form (widen it)
+
+            Else    ' Close it
+
+                Me.Width = Me.Width - 320
+
+                Call Set_Anchors_forFormResize(False)
+
+            End If
+
+        Else
+
+            If Me.GroupBox1.Left > Me.Width Then    ' when collapsed, userform will be smaller than left side position of options groupbox
+
+                Me.Width = Me.Width + 320
+
+            Else    ' we're not collapsed
+
+                Me.Width = Me.Width - 320
+
+            End If
 
         End If
+
 
     End Sub
 
@@ -857,7 +876,7 @@ Public Class Form1
             Me.FilesList_Lview.Anchor = AnchorStyles.Left + AnchorStyles.Top + AnchorStyles.Bottom
             '
             Me.ClearList_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Top
-            Me.FileList_ViewMode_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Top
+
             Me.ToggleOptions_Lbl.Anchor = AnchorStyles.Left + AnchorStyles.Bottom
             '
             Me.ProgressBar1.Anchor = AnchorStyles.Left + AnchorStyles.Bottom
@@ -873,7 +892,7 @@ Public Class Form1
             Me.FilesList_Lview.Anchor = AnchorStyles.Left + AnchorStyles.Top + AnchorStyles.Bottom + AnchorStyles.Right
             '
             Me.ClearList_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Top
-            Me.FileList_ViewMode_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Top
+
             Me.ToggleOptions_Lbl.Anchor = AnchorStyles.Right + AnchorStyles.Bottom
             '
             Me.ProgressBar1.Anchor = AnchorStyles.Left + AnchorStyles.Bottom + AnchorStyles.Right
@@ -900,7 +919,8 @@ Public Class Form1
 
         Me.Text = Me.Text & " (" & sVersion & ")"
 
-        Me.Width = 510  ' Start form collapsed
+        'Me.Width = 510  ' Start form collapsed
+        Call SetForm_Dimensions(My.Settings.FormDefaultWidth, My.Settings.FormDefaultHeight)
 
         If Directory.Exists(My.Settings.Default_App_WorkingFolder) Then
             Me.CtWorkingFolder_TxtBox.Text = Path.Combine(My.Settings.Default_App_WorkingFolder, baseFolder)
@@ -1016,21 +1036,6 @@ Public Class Form1
     End Sub
 
 
-    Private Sub FileList_ViewMode_Lbl_Click(sender As Object, e As EventArgs) Handles FileList_ViewMode_Lbl.Click
-
-        Select Case Me.FilesList_Lview.View
-            Case System.Windows.Forms.View.List
-                Me.FilesList_Lview.View = System.Windows.Forms.View.SmallIcon
-            Case System.Windows.Forms.View.SmallIcon
-                Me.FilesList_Lview.View = System.Windows.Forms.View.LargeIcon
-            Case System.Windows.Forms.View.LargeIcon
-                Me.FilesList_Lview.View = System.Windows.Forms.View.List
-        End Select
-
-        Call Update_Filelist_Icons()
-
-    End Sub
-
     Private Sub Update_Filelist_Icons()
 
         Dim iconIndex As Integer
@@ -1066,13 +1071,6 @@ Public Class Form1
         Me.ClearList_Lbl.ForeColor = System.Drawing.Color.Red
     End Sub
 
-    Private Sub FileList_ViewMode_Lbl_MouseDown(sender As Object, e As MouseEventArgs) Handles FileList_ViewMode_Lbl.MouseDown
-        Me.FileList_ViewMode_Lbl.ForeColor = System.Drawing.Color.DarkViolet
-    End Sub
-
-    Private Sub FileList_ViewMode_Lbl_MouseUp(sender As Object, e As MouseEventArgs) Handles FileList_ViewMode_Lbl.MouseUp
-        Me.FileList_ViewMode_Lbl.ForeColor = System.Drawing.Color.Maroon
-    End Sub
 
     Private Sub ToggleOptions_Lbl_MouseDown(sender As Object, e As MouseEventArgs) Handles ToggleOptions_Lbl.MouseDown
         Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.DarkViolet
@@ -1112,6 +1110,36 @@ Public Class Form1
                 My.Settings.Default_BrowseTo_Folder = Me.WorkingFolderBrowserDialog.SelectedPath
             End If
         End If
+    End Sub
+
+    Private Sub SetForm_Dimensions(UserformWidth As Integer, UserformHeight As Integer)
+        'Throw New NotImplementedException
+
+        ' should user not have messed with settings, behave default
+        If UserformWidth = 0 And UserformHeight = 0 Then
+
+            ' unlock for resize
+            Call Set_Anchors_forFormResize(True)
+
+            Me.Width = 510
+            Me.Height = 234
+
+            'and relock
+            Call Set_Anchors_forFormResize(False)
+
+        Else    ' User HAS set new default width and height as preffered
+
+            ' unlock for resize
+            Call Set_Anchors_forFormResize(True)
+
+            Me.Width = UserformWidth
+            Me.Height = UserformHeight
+
+            ' and relock
+            Call Set_Anchors_forFormResize(False)
+
+        End If
+
     End Sub
 
 End Class
