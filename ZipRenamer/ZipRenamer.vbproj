@@ -29,7 +29,7 @@
     <ProductName>Zip Renamer</ProductName>
     <PublisherName>Claudiu Margarint</PublisherName>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>51</ApplicationRevision>
+    <ApplicationRevision>52</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -147,9 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +208,24 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\format_zip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\convert-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zip_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zip_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zip_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zip_48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

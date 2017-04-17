@@ -19,12 +19,19 @@ Public Class Form1
     Public Property wordApp As Word.Application
     Public timerCount As Integer
 
+    Public zipIcons As New ImageList
+
     Const baseFolder = "CLConverter"
     Const baseInputFolder = baseFolder + "\Input"
     Const baseOutputFolder = baseFolder + "\Output"
     Private Sub ChooseZip_Btn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ChooseZip_Btn.Click
 
         Me.Message_Lbl.Text = "Ready"
+
+        
+
+        Me.FilesList_Lview.SmallImageList = zipIcons
+        Me.FilesList_Lview.LargeImageList = zipIcons
 
         Using cfdialog As New OpenFileDialog
 
@@ -40,9 +47,22 @@ Public Class Form1
 
             Dim chosenFile As String
 
+            Dim Iidx As Integer
+
+            Select Case FilesList_Lview.View
+
+                Case System.Windows.Forms.View.LargeIcon
+                    Iidx = 2
+                Case System.Windows.Forms.View.SmallIcon
+                    Iidx = 1
+                Case Else
+                    Iidx = 0
+
+            End Select
+
             ' And populate the listview with file names
             For Each chosenFile In cfdialog.FileNames
-                Me.FilesList_Lview.Items.Add(chosenFile)
+                Me.FilesList_Lview.Items.Add(Path.GetFileName(chosenFile), Iidx)
             Next chosenFile
 
         End Using
@@ -671,6 +691,7 @@ Public Class Form1
             Err.Clear()
         End Try
 
+        Me.zipIcons.Dispose()
 
         If My.Settings.App_AutoClean_Folders Then
             Call ClearInOutFolders()
@@ -802,6 +823,7 @@ Public Class Form1
         '    End
         'End If
 
+        Me.Message_Lbl.Text = "Ready"
 
     End Sub
 
@@ -857,4 +879,19 @@ Public Class Form1
 
     End Sub
 
+    
+    Private Sub FileList_ViewMode_Lbl_Click(sender As Object, e As EventArgs) Handles FileList_ViewMode_Lbl.Click
+
+        Select Case Me.FilesList_Lview.View
+            Case System.Windows.Forms.View.List
+                Me.FilesList_Lview.View = System.Windows.Forms.View.SmallIcon
+            Case System.Windows.Forms.View.SmallIcon
+                Me.FilesList_Lview.View = System.Windows.Forms.View.LargeIcon
+            Case System.Windows.Forms.View.LargeIcon
+                Me.FilesList_Lview.View = System.Windows.Forms.View.List
+        End Select
+
+            
+
+    End Sub
 End Class
