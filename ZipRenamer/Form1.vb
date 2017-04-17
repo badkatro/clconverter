@@ -351,7 +351,7 @@ Public Class Form1
         If Me.FilesList_Lview.Items.Count = 0 Then
             Me.Message_Lbl.Text = "No archives selected, Exiting..."
             Me.Refresh()
-            Threading.Thread.Sleep(400)
+            Threading.Thread.Sleep(600)
             Me.Message_Lbl.Text = "Ready"
             Me.Refresh()
             Exit Sub
@@ -880,8 +880,8 @@ Public Class Form1
     Private Sub RestoreFormOptions()
 
         ' and restore user saved settings for our check-boxes
-        If Directory.Exists(Path.Combine(My.Settings.Default_App_WorkingFolder, baseInputFolder)) Then
-            Me.CtWorkingFolder_TxtBox.Text = Path.Combine(My.Settings.Default_App_WorkingFolder, baseInputFolder)
+        If Directory.Exists(Path.Combine(My.Settings.Default_App_WorkingFolder, baseFolder)) Then
+            Me.CtWorkingFolder_TxtBox.Text = Path.Combine(My.Settings.Default_App_WorkingFolder, baseFolder)
         Else
             Me.CtWorkingFolder_TxtBox.Text = My.Settings.Default_App_WorkingFolder
         End If

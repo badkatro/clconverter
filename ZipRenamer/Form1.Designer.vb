@@ -43,6 +43,7 @@ Partial Class Form1
         Me.ChooseZip_Btn = New System.Windows.Forms.Button()
         Me.FileList_ViewMode_Lbl = New System.Windows.Forms.Label()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -52,10 +53,11 @@ Partial Class Form1
         Me.FilesList_Lview.AllowDrop = True
         Me.FilesList_Lview.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.FilesList_Lview.Location = New System.Drawing.Point(73, 12)
-        Me.FilesList_Lview.Margin = New System.Windows.Forms.Padding(100, 5, 5, 5)
+        Me.FilesList_Lview.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.FilesList_Lview.Location = New System.Drawing.Point(80, 19)
+        Me.FilesList_Lview.Margin = New System.Windows.Forms.Padding(10)
         Me.FilesList_Lview.Name = "FilesList_Lview"
-        Me.FilesList_Lview.Size = New System.Drawing.Size(378, 149)
+        Me.FilesList_Lview.Size = New System.Drawing.Size(364, 136)
         Me.FilesList_Lview.TabIndex = 1
         Me.FilesList_Lview.UseCompatibleStateImageBehavior = False
         Me.FilesList_Lview.View = System.Windows.Forms.View.SmallIcon
@@ -245,6 +247,16 @@ Partial Class Form1
         Me.FileList_ViewMode_Lbl.Text = ">"
         Me.FileList_ViewMode_Lbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Label1
+        '
+        Me.Label1.BackColor = System.Drawing.SystemColors.Window
+        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Label1.Location = New System.Drawing.Point(73, 12)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(378, 149)
+        Me.Label1.TabIndex = 10
+        '
         'Form1
         '
         Me.AllowDrop = True
@@ -256,10 +268,11 @@ Partial Class Form1
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.ToggleOptions_Lbl)
         Me.Controls.Add(Me.Message_Lbl)
-        Me.Controls.Add(Me.ProgressBar1)
         Me.Controls.Add(Me.Process_Btn)
         Me.Controls.Add(Me.ClearList_Lbl)
         Me.Controls.Add(Me.ChooseZip_Btn)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.ProgressBar1)
         Me.Name = "Form1"
         Me.Text = "CL Converter"
         Me.GroupBox1.ResumeLayout(False)
@@ -300,5 +313,6 @@ Partial Class Form1
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Default_BrowseTo_TxtBox As System.Windows.Forms.TextBox
     Friend WithEvents ChooseBrowseToFolder_Lbl As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 
 End Class
