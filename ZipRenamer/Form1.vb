@@ -99,7 +99,6 @@ Public Class Form1
 
         Dim files() As String = e.Data.GetData(DataFormats.FileDrop)
 
-        Dim newLviewItem As New ListViewItem
 
         For Each chosenFile In files
 
@@ -115,6 +114,8 @@ Public Class Form1
 
                         'Me.FilesList_Lview.Items.Add(file)
 
+                        Dim newLviewItem As New ListViewItem
+
                         newLviewItem.Text = Path.GetFileName(file)
                         newLviewItem.ImageIndex = 1
                         newLviewItem.Tag = file
@@ -128,11 +129,13 @@ Public Class Form1
 
             Else    ' no folder selected, just one or more files
 
-                newLviewItem.Text = Path.GetFileName(chosenFile)
-                newLviewItem.ImageIndex = 1
-                newLviewItem.Tag = chosenFile
+                Dim newLviewItemF As New ListViewItem
 
-                Me.FilesList_Lview.Items.Add(newLviewItem)
+                newLviewItemF.Text = Path.GetFileName(chosenFile)
+                newLviewItemF.ImageIndex = 1
+                newLviewItemF.Tag = chosenFile
+
+                Me.FilesList_Lview.Items.Add(newLviewItemF)
 
             End If
 
@@ -279,9 +282,16 @@ Public Class Form1
                     Me.Message_Lbl.Text = Split(Me.Message_Lbl.Text, "...")(0) & "..." & " (" & tmpDoc.Name & ")"
 
                     Dim newFileName As String
-                    ' rename files acc to provided scheme (11 chars then a dot and language code and new extension)
-                    newFileName = Mid(Path.GetFileNameWithoutExtension(archFile.ToString), 1, 11) & "." & Mid(Path.GetFileNameWithoutExtension(archFile.ToString), 12, 2)
-                    newFileName = Path.Combine(archOutFolder, newFileName & ".docx")
+
+                    If Len(Path.GetFileNameWithoutExtension(archFile.ToString)) > 12 Then
+
+                        ' rename files acc to provided scheme (11 chars then a dot and language code and new extension)
+                        newFileName = Mid(Path.GetFileNameWithoutExtension(archFile.ToString), 1, 11) & "." & Mid(Path.GetFileNameWithoutExtension(archFile.ToString), 12, 2)
+                        newFileName = Path.Combine(archOutFolder, newFileName & ".docx")
+
+                    Else        ' should name not seem proper, leave it such as it is
+                        newFileName = Path.Combine(archOutFolder, Path.GetFileNameWithoutExtension(archFile.ToString) & ".docx")
+                    End If
 
                     'If InStr(Path.GetFileNameWithoutExtension(archFile.ToString).ToLower, "en") > 0 Then resultArchiveName = Path.GetFileNameWithoutExtension(archFile.ToString) & ".zip"
 
@@ -400,12 +410,10 @@ Public Class Form1
 
 
         Dim inputArchivesDirs As String()
-
         inputArchivesDirs = Directory.GetDirectories(hostFolder)
 
 
         Dim archivesProcessResult As String
-
         archivesProcessResult = Convert_RtfsToDocs_InAllFolders(inputArchivesDirs)
         'archivesProcessResult = Convert_RtfsToDocs_wRTFBox_InAllFolders(inputArchivesDirs)
 
@@ -1141,12 +1149,17 @@ Public Class Form1
 
     Private Sub Pin_UserformSize_Lbl_Click(sender As Object, e As EventArgs) Handles Pin_UserformSize_Lbl.Click
 
-        If Me.Width <> My.Settings.FormDefaultWidth Or Me.Height <> My.Settings.FormDefaultHeight Then
+        ' DO NOT save new size settings if userform widened
+        If Not Me.Options_Opened Then
 
-            My.Settings.FormDefaultWidth = Me.Width
-            My.Settings.FormDefaultHeight = Me.Height
+            If Me.Width <> My.Settings.FormDefaultWidth Or Me.Height <> My.Settings.FormDefaultHeight Then
 
-            Call ShowTemporaryMessage("New form default size set ")
+                My.Settings.FormDefaultWidth = Me.Width
+                My.Settings.FormDefaultHeight = Me.Height
+
+                Call ShowTemporaryMessage("New form default size set ")
+
+            End If
 
         End If
 
