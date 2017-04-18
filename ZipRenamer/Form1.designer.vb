@@ -283,7 +283,7 @@ Partial Class Form1
         Me.Controls.Add(Me.ListViewBackgound_Lbl)
         Me.Controls.Add(Me.ProgressBar1)
         Me.Name = "Form1"
-        Me.Text = "CL Converter"
+        Me.Text = "CL Converter OXml"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)

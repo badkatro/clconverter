@@ -666,15 +666,15 @@ Public Class Form1
 
     Public Sub OpenAndAddTextToWordDocument_Docx(ByVal filepath As String, ByVal txt As String)
 
-        Using docxDoc As Novacode.DocX = Novacode.DocX.Load(filepath)
+        'Using docxDoc As Novacode.DocX = Novacode.DocX.Load(filepath)
 
-            ' Open a WordprocessingDocument for editing using the filepath.
+        '    ' Open a WordprocessingDocument for editing using the filepath.
 
-            docxDoc.InsertParagraphs(txt)
+        '    docxDoc.InsertParagraphs(txt)
 
-            docxDoc.Save()
+        '    docxDoc.Save()
 
-        End Using
+        'End Using
 
     End Sub
 
@@ -704,7 +704,7 @@ Public Class Form1
 
             mainDocPart.Document.Save()
 
-            wordDoc.Close()
+            'wordDoc.Close()
 
         End Using
 
