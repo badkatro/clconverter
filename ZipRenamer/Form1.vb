@@ -2,9 +2,7 @@
 Imports System.IO.Compression
 Imports Microsoft.VisualBasic.FileIO
 Imports Word = Microsoft.Office.Interop.Word
-Imports DocumentFormat.OpenXml
-Imports DocumentFormat.OpenXml.Packaging
-Imports DocumentFormat.OpenXml.Wordprocessing
+
 
 Public Structure TableInfo
     Public TableStartPosition As Long
@@ -553,179 +551,14 @@ Public Class Form1
 
     End Function
 
-    Private Function Convert_RtfsToDocs_InAllFolders_OXML(InputFolders As String()) As String
 
-        Me.Message_Lbl.Text = "Converting rtfs to docx..."
+    
 
-        Application.DoEvents()
 
-        For Each inputFolder As String In InputFolders
 
-            Dim rtfFilenames As String() = Directory.GetFiles(inputFolder)
+  
 
-            ' output to a folder named same as input folder, but in output folder, course
-            Dim outputFolder As String = Path.GetFileName(inputFolder)
 
-            outputFolder = Path.Combine(My.Settings.Default_App_WorkingFolder, baseOutputFolder, outputFolder)
-
-            If Not Directory.Exists(outputFolder) Then Directory.CreateDirectory(outputFolder)
-
-            For Each rtfFilename As String In rtfFilenames
-
-                Me.Message_Lbl.Text = Split(Me.Message_Lbl.Text, "...")(0) & "... " & Path.GetFileNameWithoutExtension(rtfFilename)
-
-                Application.DoEvents()
-
-                Dim docxFilename As String
-
-
-                ' rename files acc to provided scheme (11 chars then a dot and language code and new extension)
-                docxFilename = Mid(Path.GetFileNameWithoutExtension(rtfFilename), 1, 11) & "." & Mid(Path.GetFileNameWithoutExtension(rtfFilename), 12, 2)
-                docxFilename = Path.Combine(outputFolder, docxFilename & ".docx")
-
-
-                'Call CreateWordProcessingDocument(docxFilename)
-                Call CreateDocx_andInsertRtf(docxFilename, rtfFilename)
-
-                'If Not Convert_Rtf_ToDocx(rtfFilename) Then
-                '    MsgBox("This rtf failed to convert to docx" & rtfFilename, vbOKOnly)
-                '    Return 0
-                'End If
-
-                Me.ProgressBar1.Increment((75 / InputFolders.Count) / rtfFilenames.Count)
-
-            Next
-
-        Next
-
-        Return "-1" ' success
-
-    End Function
-
-    Public Sub CreateDocx_andInsertRtf(ByVal WordProcessingDoc_Filename As String, ByVal RtfFilename As String)
-
-        Dim newDocxCreationDone As Boolean
-
-        newDocxCreationDone = CreateWordProcessingDocument(WordProcessingDoc_Filename)
-
-        Dim insertRtfDone As Boolean
-
-        'insertRtfDone = Insert_Rtf_ToDocx(WordProcessingDoc_Filename, RtfFilename)
-        insertRtfDone = Insert_Rtf_ToDocx_RTB(WordProcessingDoc_Filename, RtfFilename)
-
-    End Sub
-
-    Public Function CreateWordProcessingDocument(ByVal filePath As String) As Boolean
-
-
-        Using wordDocument As WordprocessingDocument = WordprocessingDocument.Create(filePath, DocumentFormat.OpenXml.WordprocessingDocumentType.Document)
-
-            Dim mainPart As MainDocumentPart = wordDocument.AddMainDocumentPart
-
-            mainPart.Document = New Document
-
-            Dim body As Body = mainPart.Document.AppendChild(New Body)
-
-            Dim para As Paragraph = body.AppendChild(New Paragraph)
-
-            Dim run As Run = para.AppendChild(New Run)
-
-            run.AppendChild(New Text(""))
-
-        End Using
-
-        Return True
-
-    End Function
-
-    Public Sub OpenAndAddTextToWordDocument(ByVal filepath As String, ByVal txt As String())
-        ' Open a WordprocessingDocument for editing using the filepath.
-        Dim wordprocessingDocument As WordprocessingDocument = wordprocessingDocument.Open(filepath, True)
-
-        Call InsertParagraphs_ToDocument(wordprocessingDocument, txt)
-
-        wordprocessingDocument.MainDocumentPart.Document.Save()
-
-        ' Close the handle explicitly.
-        wordprocessingDocument.Close()
-    End Sub
-
-    Public Sub InsertParagraphs_ToDocument(Document As WordprocessingDocument, Paragraphs As String())
-
-        ' Assign a reference to the existing document body. 
-        Dim body As Body = Document.MainDocumentPart.Document.Body
-
-        Dim para As Paragraph
-
-        For Each inputPara In Paragraphs
-
-            ' Add new text.
-            para = body.AppendChild(New Paragraph)
-            Dim run As Run = para.AppendChild(New Run)
-            run.AppendChild(New Text(inputPara))
-
-        Next inputPara
-
-    End Sub
-
-
-    Public Sub OpenAndAddTextToWordDocument_Docx(ByVal filepath As String, ByVal txt As String)
-
-        Using docxDoc As Novacode.DocX = Novacode.DocX.Load(filepath)
-
-            ' Open a WordprocessingDocument for editing using the filepath.
-
-            docxDoc.InsertParagraphs(txt)
-
-            docxDoc.Save()
-
-        End Using
-
-    End Sub
-
-    <System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")> Private Function Insert_Rtf_ToDocx(WordProcessingDocFilename As String, ByVal RtfToImportFilename As String) As Boolean
-
-        'Dim wordDocument As WordprocessingDocument = WordProcessingDocument.Create(Path.Combine(Path.Combine(My.Settings.Default_App_WorkingFolder, baseOutputFolder), Path.GetFileNameWithoutExtension(InputRtfFilename)) & ".docx", DocumentFormat.OpenXml.WordprocessingDocumentType.Document)
-
-        Using wordDoc As WordprocessingDocument = WordprocessingDocument.Open(WordProcessingDocFilename, True)
-
-            Dim altChunkId = "AltChunkId5"
-
-            Dim mainDocPart As MainDocumentPart = wordDoc.MainDocumentPart
-
-            Dim chunk As AlternativeFormatImportPart = mainDocPart.AddAlternativeFormatImportPart(AlternativeFormatImportPartType.Rtf, altChunkId)
-
-            Dim rtfDocumentContent = File.ReadAllText(RtfToImportFilename, System.Text.Encoding.UTF8)
-
-            Using ms As MemoryStream = New MemoryStream(System.Text.Encoding.UTF8.GetBytes(rtfDocumentContent))
-                chunk.FeedData(ms)
-            End Using
-
-            Dim altChunk = New Wordprocessing.AltChunk
-
-            altChunk.Id = altChunkId
-
-            mainDocPart.Document.Body.InsertAfter(altChunk, mainDocPart.Document.Body.Elements(Of Wordprocessing.Paragraph)().Last)
-
-            mainDocPart.Document.Save()
-
-            'wordDoc.Close()
-
-        End Using
-
-        Return True
-
-    End Function
-
-    Private Function Insert_Rtf_ToDocx_RTB(WordProcessingDocFilename As String, ByVal RtfToImportFilename As String) As Boolean
-
-        Dim rtfDocumentContent = getText_wRTFTextbox(RtfToImportFilename)
-
-        Call OpenAndAddTextToWordDocument(WordProcessingDocFilename, rtfDocumentContent)
-
-        Return True
-
-    End Function
 
     Function getText_wRTFTextbox(Inputfilename As String) As String()
 
