@@ -17,4 +17,4 @@ To do:
 
 Download zip archive, unzip and run setup.exe. Clickonce deployment used, so no administrator privileges
 required. The application will self-update upon launch. It looks for new version from local network,
-in a folder on Q drive (GSC ressouce)
+in a folder on Q drive (GSC ressource)
