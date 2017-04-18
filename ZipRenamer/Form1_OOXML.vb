@@ -13,7 +13,7 @@ Public Structure TableInfo
 End Structure
 
 
-Public Class Form1
+Public Class Form1_OOXML
 
     Public RTFConverter As RichTextBox
     Public Property wordApp As Word.Application
@@ -656,7 +656,7 @@ Public Class Form1
             If countSubString(FileContent, tableRowRtfMarker) = 2 Then
                 tempResults(0).TableEndPosition = InStr(CInt(tempResults(0).TableStartPosition) + 6, FileContent, tableRowRtfMarker)
             End If
-            End If
+        End If
 
     End Function
 
