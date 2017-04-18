@@ -212,7 +212,6 @@ Partial Class Form1
         '
         'Timer1
         '
-        Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
         'Process_Btn
@@ -298,6 +297,8 @@ Partial Class Form1
     Friend WithEvents Message_Lbl As System.Windows.Forms.Label
 
     Private Sub Form1_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+
+        Me.Message_Lbl.Text = "Ready"
 
         Me.ProgressBar1.Minimum = 0
         Me.ProgressBar1.Maximum = 100

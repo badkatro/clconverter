@@ -11,5 +11,17 @@
     <Setting Name="App_AutoClean_Folders" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="App_Options_GroupBox_Width" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">320</Value>
+    </Setting>
+    <Setting Name="Default_BrowseTo_Folder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FormDefaultHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">234</Value>
+    </Setting>
+    <Setting Name="FormDefaultWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">510</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

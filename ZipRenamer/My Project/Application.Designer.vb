@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.CLConverter.Form1_OOXML
+            Me.MainForm = Global.CLConverter.Form1
         End Sub
     End Class
 End Namespace
