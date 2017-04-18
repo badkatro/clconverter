@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyTitle("CLConverter")> 
 <Assembly: AssemblyDescription("Dearchives and renames rtf docs from provided zip archive, renames acc to predefined scheme, converts to docx format and rezips docs.")> 
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("CLConverter")> 
+<Assembly: AssemblyProduct("CLConverter_OXml")> 
 <Assembly: AssemblyCopyright("Copyright ©  2017")> 
 <Assembly: AssemblyTrademark("")> 
 

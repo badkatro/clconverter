@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>CLConverter.My.MyApplication</StartupObject>
     <RootNamespace>CLConverter</RootNamespace>
-    <AssemblyName>CLConverter</AssemblyName>
+    <AssemblyName>CLConverter_OXml</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -45,7 +45,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>CLConverter.xml</DocumentationFile>
+    <DocumentationFile>CLConverter_OXml.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -55,7 +55,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>CLConverter.xml</DocumentationFile>
+    <DocumentationFile>CLConverter_OXml.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
