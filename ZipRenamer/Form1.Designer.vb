@@ -61,7 +61,7 @@ Partial Class Form1
         Me.FilesList_Lview.Size = New System.Drawing.Size(364, 136)
         Me.FilesList_Lview.TabIndex = 1
         Me.FilesList_Lview.UseCompatibleStateImageBehavior = False
-        Me.FilesList_Lview.View = System.Windows.Forms.View.SmallIcon
+        Me.FilesList_Lview.View = System.Windows.Forms.View.List
         '
         'ClearList_Lbl
         '
@@ -102,7 +102,7 @@ Partial Class Form1
         Me.ToggleOptions_Lbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ToggleOptions_Lbl.BackColor = System.Drawing.Color.Transparent
         Me.ToggleOptions_Lbl.Font = New System.Drawing.Font("Webdings", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.ToggleOptions_Lbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
+        Me.ToggleOptions_Lbl.ForeColor = System.Drawing.Color.RoyalBlue
         Me.ToggleOptions_Lbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.ToggleOptions_Lbl.Location = New System.Drawing.Point(451, 135)
         Me.ToggleOptions_Lbl.Name = "ToggleOptions_Lbl"
@@ -258,7 +258,7 @@ Partial Class Form1
         Me.Pin_UserformSize_Lbl.AccessibleDescription = "Clear file list and remove temp folders"
         Me.Pin_UserformSize_Lbl.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Pin_UserformSize_Lbl.Font = New System.Drawing.Font("Wingdings", 21.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.Pin_UserformSize_Lbl.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
+        Me.Pin_UserformSize_Lbl.ForeColor = System.Drawing.Color.Maroon
         Me.Pin_UserformSize_Lbl.ImageAlign = System.Drawing.ContentAlignment.TopLeft
         Me.Pin_UserformSize_Lbl.Location = New System.Drawing.Point(456, 36)
         Me.Pin_UserformSize_Lbl.Name = "Pin_UserformSize_Lbl"
