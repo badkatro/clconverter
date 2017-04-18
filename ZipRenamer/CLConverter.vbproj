@@ -25,11 +25,12 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\dm3\trro\10-TOOLS\0_Winform_Apps\CLConverter\</InstallUrl>
-    <UpdateUrl>\\dm3\trro\10-TOOLS\0_Winform_Apps\ZipRenamer\</UpdateUrl>
-    <ProductName>Zip Renamer</ProductName>
+    <UpdateUrl>\\dm3\trro\10-TOOLS\0_Winform_Apps\CLConverter\</UpdateUrl>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>CLConverter</ProductName>
     <PublisherName>Claudiu Margarint</PublisherName>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>72</ApplicationRevision>
+    <ApplicationRevision>73</ApplicationRevision>
     <ApplicationVersion>0.2.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -60,7 +61,7 @@
     <OptionExplicit>On</OptionExplicit>
   </PropertyGroup>
   <PropertyGroup>
-    <OptionCompare>Binary</OptionCompare>
+    <OptionCompare>Text</OptionCompare>
   </PropertyGroup>
   <PropertyGroup>
     <OptionStrict>Off</OptionStrict>
