@@ -757,7 +757,7 @@ Public Class Form1
         Dim ad As System.Deployment.Application.ApplicationDeployment = System.Deployment.Application.ApplicationDeployment.CurrentDeployment
         Dim sVersion As String
 
-        Me.RTFConverter = New RichTextBox
+        RTFConverter = New RichTextBox
 
         'Dim appVersionInfo As FileVersionInfo
         'appVersionInfo = FileVersionInfo.GetVersionInfo(Application.ExecutablePath)
@@ -791,6 +791,8 @@ Public Class Form1
 
         Call RestoreFormOptions()
 
+        Call SetTooltips
+
         '' Launch Word app upon launch, so as to make "Process" button faster
         'Me.Message_Lbl.Text = "Starting Word Application..."
         'Me.wordApp = New Word.Application
@@ -804,6 +806,29 @@ Public Class Form1
         'End If
 
         Me.Message_Lbl.Text = "Ready"
+
+    End Sub
+
+    Private Sub SetTooltips()
+
+        With ToolTip1
+
+            .SetToolTip(ChooseZip_Btn, "")
+            .SetToolTip(Process_Btn, "")
+            .SetToolTip(ClearList_Lbl, "")
+            .SetToolTip(Pin_UserformSize_Lbl, "")
+            .SetToolTip(ToggleOptions_Lbl, "")
+
+            .SetToolTip(CtWorkingFolder_TxtBox, "")
+            .SetToolTip(Default_BrowseTo_TxtBox, "")
+            .SetToolTip(AutoClean_Folders_Cbox, "")
+            .SetToolTip(Default_BrowseToFolder_Cbox, "")
+            .SetToolTip(OpenOutputFolder_Cbox, "")
+
+            .SetToolTip(ChooseBrowseToFolder_Lbl, "")
+            .SetToolTip(ChooseWorkingFolder_Lbl, "")
+
+        End With
 
     End Sub
 
