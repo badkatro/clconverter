@@ -15,8 +15,6 @@ Public Class Form1
 
     Private Const ConvertRtfsMessage As String = "Converting rtfs to docx..."
 
-    Private Property wdHandle As Integer
-
     Private Property Options_Opened As Boolean = False
 
     Public RTFConverter As RichTextBox
@@ -28,6 +26,8 @@ Public Class Form1
     Const baseFolder = "CLConverter"
     Const baseInputFolder = baseFolder + "\Input"
     Const baseOutputFolder = baseFolder + "\Output"
+
+
     Private Sub ChooseZip_Btn_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ChooseZip_Btn.Click
 
         Me.Message_Lbl.Text = "Ready"
@@ -68,20 +68,45 @@ Public Class Form1
             ' And populate the listview with file names
             For Each chosenFile In cfdialog.FileNames
 
-                Dim newLviewItem As New ListViewItem
 
-                newLviewItem.Text = Path.GetFileName(chosenFile)
-                newLviewItem.ImageIndex = 1
-                newLviewItem.Tag = chosenFile
+                If Not FileAlreadyAdded(Path.GetFileName(chosenFile)) Then
 
-                Me.FilesList_Lview.Items.Add(newLviewItem)
-                ' Save complete 
+                    Dim newLviewItem As New ListViewItem
+
+                    newLviewItem.Text = Path.GetFileName(chosenFile)
+
+                    newLviewItem.ImageIndex = 1
+                    newLviewItem.Tag = chosenFile
+
+                    Me.FilesList_Lview.Items.Add(newLviewItem)
+
+                    ' Save complete 
+
+                End If
 
             Next chosenFile
 
         End Using
 
     End Sub
+
+    Private Function FileAlreadyAdded(ByVal Filename As String) As Boolean
+
+        If FilesList_Lview.Items.Count = 0 Then Return False
+
+        Dim listItem As ListViewItem
+
+        For Each listItem In FilesList_Lview.Items
+
+            If listItem.Text = Filename Then
+                Return True
+            End If
+
+        Next listItem
+
+        Return False
+
+    End Function
 
     Private Sub ClearList_Lbl_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ClearList_Lbl.Click
         Me.FilesList_Lview.Clear()
@@ -110,16 +135,18 @@ Public Class Form1
 
                     If Path.GetExtension(file).ToLower = ".zip" Then
 
-                        'Me.FilesList_Lview.Items.Add(file)
+                        If Not FileAlreadyAdded(Path.GetFileName(file)) Then
 
-                        Dim newLviewItem As New ListViewItem
+                            Dim newLviewItem As New ListViewItem
 
-                        newLviewItem.Text = Path.GetFileName(file)
-                        newLviewItem.ImageIndex = 1
-                        newLviewItem.Tag = file
+                            newLviewItem.Text = Path.GetFileName(file)
+                            newLviewItem.ImageIndex = 1
+                            newLviewItem.Tag = file
 
-                        Me.FilesList_Lview.Items.Add(newLviewItem)
-                        ' Save complete 
+                            Me.FilesList_Lview.Items.Add(newLviewItem)
+                            ' Save complete 
+
+                        End If
 
                     End If
 
@@ -127,13 +154,17 @@ Public Class Form1
 
             Else    ' no folder selected, just one or more files
 
-                Dim newLviewItemF As New ListViewItem
+                If Not FileAlreadyAdded(Path.GetFileName(chosenFile)) Then
 
-                newLviewItemF.Text = Path.GetFileName(chosenFile)
-                newLviewItemF.ImageIndex = 1
-                newLviewItemF.Tag = chosenFile
+                    Dim newLviewItemF As New ListViewItem
 
-                Me.FilesList_Lview.Items.Add(newLviewItemF)
+                    newLviewItemF.Text = Path.GetFileName(chosenFile)
+                    newLviewItemF.ImageIndex = 1
+                    newLviewItemF.Tag = chosenFile
+
+                    Me.FilesList_Lview.Items.Add(newLviewItemF)
+
+                End If
 
             End If
 
