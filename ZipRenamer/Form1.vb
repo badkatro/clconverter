@@ -815,19 +815,19 @@ Public Class Form1
 
             .SetToolTip(ChooseZip_Btn, "Choose one or more zip archives to process (use Ctrl/ Shift). No folders.")
             .SetToolTip(Process_Btn, "Launch processing of zip archives in the list")
-            .SetToolTip(FilesList_Lview, "Drag & drop one/multiple folders and/or files here to add all zips therein to the list")
-            .SetToolTip(ClearList_Lbl, "Clear archives list and remove temporary folders")
-            .SetToolTip(Pin_UserformSize_Lbl, "Set current form size as default")
+            .SetToolTip(FilesList_Lview, "Drag & drop one/multiple folders and/or files here to add all zips within")
+            .SetToolTip(ClearList_Lbl, "Clear list and remove temporary folders")
+            .SetToolTip(Pin_UserformSize_Lbl, "Make current form size default")
             .SetToolTip(ToggleOptions_Lbl, "Show/hide options area")
 
-            .SetToolTip(CtWorkingFolder_TxtBox, "This folder is where the app creates input/ output folders and where the resulting archives will be (in the Output subfoler)")
-            .SetToolTip(Default_BrowseTo_TxtBox, "Set this option to always start browsing from this folder when using Choose Zip button")
+            .SetToolTip(CtWorkingFolder_TxtBox, "This folder is where the app creates input/ output and the resulting archives will be (in the Output subfolder)")
+            .SetToolTip(Default_BrowseTo_TxtBox, "Set this option to always start browsing from this folder when using <Choose Zip> button")
             .SetToolTip(AutoClean_Folders_Cbox, "Set this option to always clear temporary folder on program exit")
             .SetToolTip(Default_BrowseToFolder_Cbox, "Activate this option to be able to set a default browse to folder")
-            .SetToolTip(OpenOutputFolder_Cbox, "Set this option to always open the folder contating the result archives upon task completion")
+            .SetToolTip(OpenOutputFolder_Cbox, "Set this option to always open the folder contating the result archives on task completion")
 
-            .SetToolTip(ChooseBrowseToFolder_Lbl, "Click to choose a default browse to folder")
-            .SetToolTip(ChooseWorkingFolder_Lbl, "Click to choose a working folder ")
+            .SetToolTip(ChooseBrowseToFolder_Lbl, "Click to change default browse to folder")
+            .SetToolTip(ChooseWorkingFolder_Lbl, "Click to change working folder ")
 
         End With
 
