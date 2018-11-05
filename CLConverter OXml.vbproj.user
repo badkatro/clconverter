@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <PublishUrlHistory>C:\Deploy\OOxmlCLConverter\|C:\Deploy\ZipRenamer\|\\dm3\trro\10-TOOLS\0_WinformApps\|https://s3-eu-west-1.amazonaws.com/win-vbnet/|https://s3-eu-west-1.amazonaws.com/win-vbnet/ZipRenamer/</PublishUrlHistory>
+    <InstallUrlHistory>\\dm3\trro\10-TOOLS\0_Winform_Apps\CLConverter\|\\dm3\trro\10-TOOLS\0_Winform_Apps\ZipRenamer\|https://s3-eu-west-1.amazonaws.com/win-vbnet/ZipRenamer/|\\dm3\trro\10-TOOLS\|https://portal.consilium.europa.eu/personal/consilium_margama/bdkapps/SitePages/,DanaInfo=domus-mysite.consilium.eu.int+ZipRenamer%2520Install.aspx/</InstallUrlHistory>
+    <SupportUrlHistory />
+    <UpdateUrlHistory>\\dm3\trro\10-TOOLS\0_Winform_Apps\CLConverter\|\\dm3\trro\10-TOOLS\0_Winform_Apps\ZipRenamer\</UpdateUrlHistory>
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+</Project>

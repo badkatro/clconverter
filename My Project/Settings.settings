@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="Default_App_WorkingFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\Docs</Value>
+    </Setting>
+    <Setting Name="App_Open_OutputFolder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="App_AutoClean_Folders" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Default_BrowseTo_Folder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\</Value>
+    </Setting>
+    <Setting Name="FormDefaultWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">510</Value>
+    </Setting>
+    <Setting Name="FormDefaultHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">234</Value>
+    </Setting>
+    <Setting Name="App_Options_GroupBox_Width" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">320</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
